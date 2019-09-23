@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/23/19
  * @project testtask
  */
+
 public class NumbersDescriptorTest {
     private NumbersDescriptor numbersDescriptor;
 
