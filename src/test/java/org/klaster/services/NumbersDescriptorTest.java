@@ -29,13 +29,12 @@ public class NumbersDescriptorTest {
 
     private static Stream<Arguments> numbersForNamedNumOrder() {
         return Stream.of(
-                Arguments.of("1", 0, 0),
-                Arguments.of("10", 1, 1),
-                Arguments.of("100", 2, 2),
-                Arguments.of("1000", 3, 3),
-                Arguments.of("10000", 3, 4),
-                Arguments.of("100000", 3, 5),
-                Arguments.of("1000000", 6, 6)
+                Arguments.of("10", 0, 1),
+                Arguments.of("100", 0, 2),
+                Arguments.of("1000", 1, 3),
+                Arguments.of("10000", 1, 4),
+                Arguments.of("100000", 1, 5),
+                Arguments.of("1000000", 2, 6)
         );
     }
 
