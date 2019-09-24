@@ -17,7 +17,7 @@ public class NumbersDescriptor {
 
     public static int namedNumOrder(String number) {
         final int order = numOrder(number);
-        final int result = order < 3 || order % 3 == 0 ? order : order - (order % 3);
+        final int result = order < 3 ?  0 : order / 3;
         return result;
     }
 
