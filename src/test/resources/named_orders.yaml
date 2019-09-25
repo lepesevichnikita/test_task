@@ -1,0 +1,116 @@
+namedOrders:
+  -
+    namedOrderNumber: 0
+    root: ""
+  -
+    namedOrderNumber: 1
+    gender: FEMININE
+    root: "тысяч"
+  -
+    namedOrderNumber: 2
+    root: "миллион"
+  -
+    namedOrderNumber: 3
+    root: "миллиард"
+  -
+    namedOrderNumber: 4
+    root: "триллион"
+  -
+    namedOrderNumber: 5
+    root: "квадриллион"
+  -
+    namedOrderNumber: 6
+    root: "квинтиллион"
+  -
+    namedOrderNumber: 7
+    root: "секстиллион"
+  -
+    namedOrderNumber: 8
+    root: "септиллион"
+  -
+    namedOrderNumber: 9
+    root: "октиллион"
+  -
+    namedOrderNumber: 10
+    root: "нониллион"
+  -
+    namedOrderNumber: 11
+    root: "дециллион"
+  -
+    namedOrderNumber: 12
+    root: "ундециллион"
+  -
+    namedOrderNumber: 13
+    root: "додециллион"
+  -
+    namedOrderNumber: 14
+    root: "тредециллион"
+  -
+    namedOrderNumber: 15
+    root: "кваттуордециллион"
+  -
+    namedOrderNumber: 16
+    root: "квиндециллион"
+  -
+    namedOrderNumber: 17
+    root: "сексдециллион"
+  -
+    namedOrderNumber: 18
+    root: "септемдециллион"
+  -
+    namedOrderNumber: 19
+    root: "октодециллион"
+  -
+    namedOrderNumber: 20
+    root: "новемдециллион"
+  -
+    namedOrderNumber: 21
+    root: "вигинтиллион"
+  -
+    namedOrderNumber: 22
+    root: "унвигинтиллион"
+  -
+    namedOrderNumber: 23
+    root: "дуовигинтиллион"
+  -
+    namedOrderNumber: 24
+    root: "тревигинтиллион"
+  -
+    namedOrderNumber: 25
+    root: "кватуорвигинтиллион"
+  -
+    namedOrderNumber: 26
+    root: "квинвигинтиллион"
+  -
+    namedOrderNumber: 27
+    root: "сексвигинтиллион"
+  -
+    namedOrderNumber: 28
+    root: "септенвигинтиллион"
+  -
+    namedOrderNumber: 29
+    root: "октовигинтиллион"
+  -
+    namedOrderNumber: 30
+    root: "новемвигинтиллион"
+  -
+    namedOrderNumber: 31
+    root: "тригинтиллион"
+  -
+    namedOrderNumber: 32
+    root: "унтригинтиллион"
+  -
+    namedOrderNumber: 33
+    root: "дуотригинтиллион"
+  -
+    namedOrderNumber: 34
+    root: "третригинтиллион"
+  -
+    namedOrderNumber: 35
+    root: "кватортригинтиллион"
+  -
+    namedOrderNumber: 36
+    root: "квинтригинтиллион"
+  -
+    namedOrderNumber: 37
+    root: "секстригинтиллион"
