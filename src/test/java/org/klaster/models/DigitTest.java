@@ -81,38 +81,29 @@ public class DigitTest {
     @ParameterizedTest
     @DisplayName("Converts base digits under 10 without feminine and neuter form to its masculine form in different " +
                          "genders")
-    @MethodSource({"digitsWithoutFeminineAndNeuterFormsUnderTen", "numbersBetweenTenAndTwenty", "tens", "hundreds" })
-    void digitsWithoutFeminineAndNeuterFormsUnderTen(String digit,
+    @MethodSource({
+                          "digitsWithFeminineAndNeuterFormsUnderTen",
+                          "digitsWithoutFeminineAndNeuterFormsUnderTen",
+                          "hundreds",
+                          "numbersBetweenTenAndTwenty",
+                          "tens"
+                  })
+    void digitsWithoutFeminineAndNeuterFormsUnderTen(String symbol,
                                                      int positionInTriple,
                                                      String masculineForm,
                                                      String feminineForm,
                                                      NamedOrder.Form requiredNamedOrderForm,
                                                      NamedOrder.Case requiredNamedOrderCase) {
-        this.digit = new Digit();
-        this.digit.setSymbol(digit);
-        this.digit.setPositionInTriple(positionInTriple);
-        this.digit.setGenderForm(NamedOrder.Gender.MASCULINE, masculineForm);
-        this.digit.setGenderForm(NamedOrder.Gender.FEMININE, feminineForm);
-        this.digit.setForm(requiredNamedOrderForm);
-        this.digit.setCase(requiredNamedOrderCase);
+        digit = new Digit();
+        digit.setSymbol(symbol);
+        digit.setPositionInTriple(positionInTriple);
+        digit.setGenderForm(NamedOrder.Gender.MASCULINE, masculineForm);
+        digit.setGenderForm(NamedOrder.Gender.FEMININE, feminineForm);
+        digit.setForm(requiredNamedOrderForm);
+        digit.setCase(requiredNamedOrderCase);
+
+        assertEquals(masculineForm, digit.getGenderForm(NamedOrder.Gender.MASCULINE));
+        assertEquals(feminineForm, digit.getGenderForm(NamedOrder.Gender.FEMININE));
     }
 
-    @ParameterizedTest
-    @DisplayName("Converts base digits under 10 with feminine and neuter form to different forms in different genders")
-    @MethodSource("digitsWithFeminineAndNeuterFormsUnderTen")
-    void digitsWithFeminineAndNeuterForms(String digit,
-                                                     int positionInTriple,
-                                                     String expectedMasculineForm,
-                                                     String expectedFeminineForm,
-                                                     NamedOrder.Form requiredNamedOrderForm,
-                                                     NamedOrder.Case requiredNamedOrderCase) {
-        this.digit = new Digit();
-        this.digit.setSymbol(digit);
-        this.digit.setPositionInTriple(positionInTriple);
-        this.digit.setGenderForm(NamedOrder.Gender.MASCULINE, expectedMasculineForm);
-        this.digit.setGenderForm(NamedOrder.Gender.FEMININE, expectedFeminineForm);
-        this.digit.setForm(requiredNamedOrderForm);
-        this.digit.setCase(requiredNamedOrderCase);
-        assertEquals(this.digit.toString(), expectedMasculineForm);
-    }
 }
