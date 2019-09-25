@@ -51,7 +51,7 @@ public class NamedOrderTest {
         namedOrder.setSingular(NamedOrder.Case.NOMINATIVE, singularNominativeExpected);
         namedOrder.setSingular(NamedOrder.Case.GENITIVE, singularGenetiveExpected);
         namedOrder.setPlural(NamedOrder.Case.GENITIVE, pluralGenetiveExpected);
-        namedOrder.setWordCase(NamedOrder.Case.GENITIVE);
+        namedOrder.setCurrentCase(NamedOrder.Case.GENITIVE);
         assertEquals(singularNominativeExpected, namedOrder.getSingular(NamedOrder.Case.NOMINATIVE));
         assertEquals(singularGenetiveExpected, namedOrder.getSingular(NamedOrder.Case.GENITIVE));
         assertEquals(pluralGenetiveExpected, namedOrder.getPlural(NamedOrder.Case.GENITIVE));
@@ -62,14 +62,14 @@ public class NamedOrderTest {
     @ParameterizedTest
     @DisplayName("Creates valid named order objects with singular form and genetive case")
     @MethodSource("firstFiveNamedOrders")
-    void pluralNamedOrdersInGenetiveCase(int namedOrderNumber, String singularNominativeExpected, String singularGenetiveExpected, String pluralGenetiveExpected) {
+    void pluralNamedOrdersInGenitiveCase(int namedOrderNumber, String singularNominativeExpected, String singularGenetiveExpected, String pluralGenetiveExpected) {
         namedOrder = new NamedOrder();
         namedOrder.setNamedOrderNumber(namedOrderNumber);
         namedOrder.setSingular(NamedOrder.Case.NOMINATIVE, singularNominativeExpected);
         namedOrder.setSingular(NamedOrder.Case.GENITIVE, singularGenetiveExpected);
         namedOrder.setPlural(NamedOrder.Case.GENITIVE, pluralGenetiveExpected);
-        namedOrder.setWordForm(NamedOrder.Form.PLURAL);
-        namedOrder.setWordCase(NamedOrder.Case.GENITIVE);
+        namedOrder.setCurrentForm(NamedOrder.Form.PLURAL);
+        namedOrder.setCurrentCase(NamedOrder.Case.GENITIVE);
         assertEquals(singularNominativeExpected, namedOrder.getSingular(NamedOrder.Case.NOMINATIVE));
         assertEquals(singularGenetiveExpected, namedOrder.getSingular(NamedOrder.Case.GENITIVE));
         assertEquals(pluralGenetiveExpected, namedOrder.getPlural(NamedOrder.Case.GENITIVE));

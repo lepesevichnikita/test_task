@@ -1,0 +1,200 @@
+namedOrders:
+  -
+    namedOrderNumber: 0,
+    forms:
+      SINGULAR:
+        NOMINATIVE: ""
+        GENETIVE: ""
+      PLURAL:
+        NOMINATIVE: ""
+        GENETIVE: ""
+  -
+    namedOrderNumber: 1,
+    requiredDigitsGender: FEMININE
+    forms:
+      SINGULAR:
+        NOMINATIVE: "тысяча"
+        GENETIVE: "тысячи"
+      PLURAL:
+        NOMINATIVE: "тысячи"
+        GENETIVE: "тысяч"
+  -
+    namedOrderNumber: 2,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "миллион"
+  -
+    namedOrderNumber: 3,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "миллиард"
+  -
+    namedOrderNumber: 4,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "триллион"
+  -
+    namedOrderNumber: 5,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "квадриллион"
+  -
+    namedOrderNumber: 6,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "квинтиллион"
+  -
+    namedOrderNumber: 7,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "секстиллион"
+  -
+    namedOrderNumber: 8,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "септиллион"
+  -
+    namedOrderNumber: 9,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "октиллион"
+  -
+    namedOrderNumber: 10,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "нониллион"
+  -
+    namedOrderNumber: 11,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "дециллион"
+  -
+    namedOrderNumber: 12,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "ундециллион"
+  -
+    namedOrderNumber: 13,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "додециллион"
+  -
+    namedOrderNumber: 14,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "тредециллион"
+  -
+    namedOrderNumber: 15,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "кваттуордециллион"
+  -
+    namedOrderNumber: 16,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "квиндециллион"
+  -
+    namedOrderNumber: 17,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "сексдециллион"
+  -
+    namedOrderNumber: 18,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "септемдециллион"
+  -
+    namedOrderNumber: 19,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "октодециллион"
+  -
+    namedOrderNumber: 20,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "новемдециллион"
+  -
+    namedOrderNumber: 21,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "вигинтиллион"
+  -
+    namedOrderNumber: 22,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "унвигинтиллион"
+  -
+    namedOrderNumber: 23,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "дуовигинтиллион"
+  -
+    namedOrderNumber: 24,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "тревигинтиллион"
+  -
+    namedOrderNumber: 25,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "кватуорвигинтиллион"
+  -
+    namedOrderNumber: 26,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "квинвигинтиллион"
+  -
+    namedOrderNumber: 27,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "сексвигинтиллион"
+  -
+    namedOrderNumber: 28,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "септенвигинтиллион"
+  -
+    namedOrderNumber: 29,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "октовигинтиллион"
+  -
+    namedOrderNumber: 30,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "новемвигинтиллион"
+  -
+    namedOrderNumber: 31,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "тригинтиллион"
+  -
+    namedOrderNumber: 32,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "унтригинтиллион"
+  -
+    namedOrderNumber: 33,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "дуотригинтиллион"
+  -
+    namedOrderNumber: 34,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "третригинтиллион"
+  -
+    namedOrderNumber: 35,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "кватортригинтиллион"
+  -
+    namedOrderNumber: 36,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "квинтригинтиллион"
+  -
+    namedOrderNumber: 37,
+    forms:
+      SINGULAR:
+        NOMINATIVE: "секстригинтиллион"
