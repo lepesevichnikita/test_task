@@ -6,8 +6,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.klaster.models.Digit;
+import org.klaster.models.NamedOrder;
 
 import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/25/19
@@ -31,7 +35,7 @@ public class DigitsGenderFormsBuilderTest {
     private static Stream<Arguments> digitsBetweenThreeAndTen() {
         return Stream.of(
                 Arguments.of("0", 0, "ноль", ""),
-                Arguments.of("3", 0, "три"),
+                Arguments.of("3", 0, "три", ""),
                 Arguments.of("4", 0, "четыре", ""),
                 Arguments.of("5", 0, "пять", ""),
                 Arguments.of("6", 0, "шесть", ""),
@@ -88,11 +92,13 @@ public class DigitsGenderFormsBuilderTest {
     }
 
     @ParameterizedTest
-    @DisplayName("Builds correct forms of digits by genders")
+    @DisplayName("Builds correct forms of digits, that haven't feminine gender")
     @MethodSource({"digitsBetweenThreeAndTen", "numbersBetweenTenAndTwenty", "tens", "hundreds"})
-    void buildsGenderFormsOfDigitsWithoutFeminineForm(String digit, int positionInTriple, String expectedMasculineForm,
+    void buildsGenderFormsOfDigitsWithoutFeminineForm(String digitSymbol, int positionInTriple,
+                                                      String expectedMasculineForm,
                                                       String expectedFeminineForm) {
         Digit digit = new Digit();
+        digit.setSymbol(digitSymbol);
         digit.setPositionInTriple(positionInTriple);
         digit.setGenderForm(NamedOrder.Gender.MASCULINE, expectedMasculineForm);
         digit.setGenderForm(NamedOrder.Gender.FEMININE, expectedFeminineForm);
@@ -105,11 +111,13 @@ public class DigitsGenderFormsBuilderTest {
     }
 
     @ParameterizedTest
-    @DisplayName("Builds correct forms of digits by genders")
+    @DisplayName("Builds correct forms of digits with feminine gender")
     @MethodSource("digitsUnderTwo")
-    void buildsGenderFormsOfDigitsWithoutFeminineForm(String digit, int positionInTriple, String expectedMasculineForm,
+    void buildsGenderFormsOfDigitsWithFeminineForm(String digitSymbol, int positionInTriple,
+                                                   String expectedMasculineForm,
                                                       String expectedFeminineForm) {
         Digit digit = new Digit();
+        digit.setSymbol(digitSymbol);
         digit.setPositionInTriple(positionInTriple);
         digit.setGenderForm(NamedOrder.Gender.MASCULINE, expectedMasculineForm);
         digit.setGenderForm(NamedOrder.Gender.FEMININE, expectedFeminineForm);

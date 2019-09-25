@@ -1,193 +1,193 @@
 digits:
   -
     positionInTriple: 0
-    digit: "0"
-    forms:
+    symbol: "0"
+    genders:
       MASCULINE: "ноль"
   -
     positionInTriple: 0
-    digit: "1"
-    forms:
+    symbol: "1"
+    genders:
       MASCULINE: "один"
       FEMININE: "одна"
-    requiredNamedOrderForm: SINGULAR
-    requiredNamedOrderCase: NOMINATIVE
+    form: SINGULAR
+    case: NOMINATIVE
   -
     positionInTriple: 0
-    digit: "2"
-    forms:
+    symbol: "2"
+    genders:
       MASCULINE: "два"
       FEMININE: "две"
-    requiredNamedOrderForm: SINGULAR
+    form: SINGULAR
   -
     positionInTriple: 0
-    digit: "3"
-    forms:
+    symbol: "3"
+    genders:
       MASCULINE: "три"
-    requiredNamedOrderForm: SINGULAR
+    form: SINGULAR
   -
     positionInTriple: 0
-    digit: "4"
-    forms:
+    symbol: "4"
+    genders:
       MASCULINE: "четыре"
-    requiredNamedOrderForm: SINGULAR
+    form: SINGULAR
   -
     positionInTriple: 0
-    digit: "5"
-    forms:
+    symbol: "5"
+    genders:
       MASCULINE: "пять"
   -
     positionInTriple: 0
-    digit: "6"
-    forms:
+    symbol: "6"
+    genders:
       MASCULINE: "шесть"
   -
     positionInTriple: 0
-    digit: "7"
-    forms:
+    symbol: "7"
+    genders:
       MASCULINE: "семь"
   -
     positionInTriple: 0
-    digit: "8"
-    forms:
+    symbol: "8"
+    genders:
       MASCULINE: "восемь"
   -
     positionInTriple: 0
-    digit: "9"
-    forms:
+    symbol: "9"
+    genders:
       MASCULINE: "девять"
   -
     positionInTriple: 1
-    digit: "10"
-    forms:
+    symbol: "10"
+    genders:
       MASCULINE: "десять"
   -
     positionInTriple: 1
-    digit: "11"
-    forms:
+    symbol: "11"
+    genders:
       MASCULINE: "одиннадцать"
   -
     positionInTriple: 1
-    digit: "12"
-    forms:
+    symbol: "12"
+    genders:
       MASCULINE: "двенадцать"
   -
     positionInTriple: 1
-    digit: "13"
-    forms:
+    symbol: "13"
+    genders:
       MASCULINE: "тринадцать"
   -
     positionInTriple: 1
-    digit: "14"
-    forms:
+    symbol: "14"
+    genders:
       MASCULINE: "четырнадцать"
   -
     positionInTriple: 1
-    digit: "15"
-    forms:
+    symbol: "15"
+    genders:
       MASCULINE: "пятнадцать"
   -
     positionInTriple: 1
-    digit: "16"
-    forms:
+    symbol: "16"
+    genders:
       MASCULINE: "шестнадцать"
   -
     positionInTriple: 1
-    digit: "17"
-    forms:
+    symbol: "17"
+    genders:
       MASCULINE: "семнадцать"
   -
     positionInTriple: 1
-    digit: "18"
-    forms:
+    symbol: "18"
+    genders:
       MASCULINE: "восемнадцать"
   -
     positionInTriple: 1
-    digit: "19"
-    forms:
+    symbol: "19"
+    genders:
       MASCULINE: "девятнадцать"
   -
     positionInTriple: 1
-    digit: "2"
-    forms:
+    symbol: "2"
+    genders:
       MASCULINE: "двадцать"
   -
     positionInTriple: 1
-    digit: "3"
-    forms:
+    symbol: "3"
+    genders:
       MASCULINE: "тридцать"
   -
     positionInTriple: 1
-    digit: "4"
-    forms:
+    symbol: "4"
+    genders:
       MASCULINE: "сорок"
   -
     positionInTriple: 1
-    digit: "5"
-    forms:
+    symbol: "5"
+    genders:
       MASCULINE: "пятьдесят"
   -
     positionInTriple: 1
-    digit: "6"
-    forms:
+    symbol: "6"
+    genders:
       MASCULINE: "шестьдесят"
   -
     positionInTriple: 1
-    digit: "7"
-    forms:
+    symbol: "7"
+    genders:
       MASCULINE: "семьдесят"
   -
     positionInTriple: 1
-    digit: "8"
-    forms:
+    symbol: "8"
+    genders:
       MASCULINE: "восемьдесят"
   -
     positionInTriple: 1
-    digit: "9"
-    forms:
+    symbol: "9"
+    genders:
       MASCULINE: "девяносто"
   -
     positionInTriple: 2
-    digit: "1"
-    forms:
+    symbol: "1"
+    genders:
       MASCULINE: "сто"
   -
     positionInTriple: 2
-    digit: "2"
-    forms:
+    symbol: "2"
+    genders:
       MASCULINE: "двести"
   -
     positionInTriple: 2
-    digit: "3"
-    forms:
+    symbol: "3"
+    genders:
       MASCULINE: "триста"
   -
     positionInTriple: 2
-    digit: "4"
-    forms:
+    symbol: "4"
+    genders:
       MASCULINE: "четыреста"
   -
     positionInTriple: 2
-    digit: "5"
-    forms:
+    symbol: "5"
+    genders:
       MASCULINE: "пятьсот"
   -
     positionInTriple: 2
-    digit: "6"
-    forms:
+    symbol: "6"
+    genders:
       MASCULINE: "шестьсот"
   -
     positionInTriple: 2
-    digit: "7"
-    forms:
+    symbol: "7"
+    genders:
       MASCULINE: "семьсот"
   -
     positionInTriple: 2
-    digit: "8"
-    forms:
+    symbol: "8"
+    genders:
       MASCULINE: "восемьсот"
   -
     positionInTriple: 2
-    digit: "9"
-    forms:
+    symbol: "9"
+    genders:
       MASCULINE: "девятьсот"

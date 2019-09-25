@@ -89,7 +89,7 @@ public class DigitTest {
                                                      NamedOrder.Form requiredNamedOrderForm,
                                                      NamedOrder.Case requiredNamedOrderCase) {
         this.digit = new Digit();
-        this.digit.setDigit(digit);
+        this.digit.setSymbol(digit);
         this.digit.setPositionInTriple(positionInTriple);
         this.digit.setGenderForm(NamedOrder.Gender.MASCULINE, masculineForm);
         this.digit.setGenderForm(NamedOrder.Gender.FEMININE, feminineForm);
@@ -107,7 +107,7 @@ public class DigitTest {
                                                      NamedOrder.Form requiredNamedOrderForm,
                                                      NamedOrder.Case requiredNamedOrderCase) {
         this.digit = new Digit();
-        this.digit.setDigit(digit);
+        this.digit.setSymbol(digit);
         this.digit.setPositionInTriple(positionInTriple);
         this.digit.setGenderForm(NamedOrder.Gender.MASCULINE, expectedMasculineForm);
         this.digit.setGenderForm(NamedOrder.Gender.FEMININE, expectedFeminineForm);
