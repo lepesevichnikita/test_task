@@ -36,10 +36,10 @@ public class NamedOrderTest {
         namedOrder.setSingular(NamedOrder.Case.NOMINATIVE, singularNominativeExpected);
         namedOrder.setSingular(NamedOrder.Case.GENITIVE, singularGenetiveExpected);
         namedOrder.setPlural(NamedOrder.Case.GENITIVE, pluralGenetiveExpected);
-        assertEquals(namedOrder.getSingular(NamedOrder.Case.NOMINATIVE), singularNominativeExpected);
-        assertEquals(namedOrder.getSingular(NamedOrder.Case.GENITIVE), singularGenetiveExpected);
-        assertEquals(namedOrder.getPlural(NamedOrder.Case.GENITIVE), pluralGenetiveExpected);
-        assertEquals(namedOrder.toString(), singularNominativeExpected);
+        assertEquals(singularNominativeExpected, namedOrder.getSingular(NamedOrder.Case.NOMINATIVE));
+        assertEquals(singularGenetiveExpected, namedOrder.getSingular(NamedOrder.Case.GENITIVE));
+        assertEquals(pluralGenetiveExpected, namedOrder.getPlural(NamedOrder.Case.GENITIVE));
+        assertEquals(singularNominativeExpected, namedOrder.toString());
     }
 
     @ParameterizedTest
@@ -52,10 +52,10 @@ public class NamedOrderTest {
         namedOrder.setSingular(NamedOrder.Case.GENITIVE, singularGenetiveExpected);
         namedOrder.setPlural(NamedOrder.Case.GENITIVE, pluralGenetiveExpected);
         namedOrder.setWordCase(NamedOrder.Case.GENITIVE);
-        assertEquals(namedOrder.getSingular(NamedOrder.Case.NOMINATIVE), singularNominativeExpected);
-        assertEquals(namedOrder.getSingular(NamedOrder.Case.GENITIVE), singularGenetiveExpected);
-        assertEquals(namedOrder.getPlural(NamedOrder.Case.GENITIVE), pluralGenetiveExpected);
-        assertEquals(namedOrder.toString(), singularGenetiveExpected);
+        assertEquals(singularNominativeExpected, namedOrder.getSingular(NamedOrder.Case.NOMINATIVE));
+        assertEquals(singularGenetiveExpected, namedOrder.getSingular(NamedOrder.Case.GENITIVE));
+        assertEquals(pluralGenetiveExpected, namedOrder.getPlural(NamedOrder.Case.GENITIVE));
+        assertEquals(singularGenetiveExpected, namedOrder.toString());
     }
 
 
@@ -70,9 +70,9 @@ public class NamedOrderTest {
         namedOrder.setPlural(NamedOrder.Case.GENITIVE, pluralGenetiveExpected);
         namedOrder.setWordForm(NamedOrder.Form.PLURAL);
         namedOrder.setWordCase(NamedOrder.Case.GENITIVE);
-        assertEquals(namedOrder.getSingular(NamedOrder.Case.NOMINATIVE), singularNominativeExpected);
-        assertEquals(namedOrder.getSingular(NamedOrder.Case.GENITIVE), singularGenetiveExpected);
-        assertEquals(namedOrder.getPlural(NamedOrder.Case.GENITIVE), pluralGenetiveExpected);
-        assertEquals(namedOrder.toString(), pluralGenetiveExpected);
+        assertEquals(singularNominativeExpected, namedOrder.getSingular(NamedOrder.Case.NOMINATIVE));
+        assertEquals(singularGenetiveExpected, namedOrder.getSingular(NamedOrder.Case.GENITIVE));
+        assertEquals(pluralGenetiveExpected, namedOrder.getPlural(NamedOrder.Case.GENITIVE));
+        assertEquals(pluralGenetiveExpected, namedOrder.toString());
     }
 }
