@@ -8,38 +8,10 @@ import java.util.Map;
  * @project testtask
  */
 public class Digit {
-    private String              value;
-    private Map<String, String> underTen = new HashMap<String, String>() {
-        {
-            put("0", "ноль");
-            put("1", "один");
-            put("2", "два");
-            put("3", "три");
-            put("4", "четыре");
-            put("5", "пять");
-            put("6", "шесть");
-            put("7", "семь");
-            put("8", "восемь");
-            put("9", "девять");
-
-        }
-    };
-
-    private Map<String, String> betweenTenAndTwenty = new HashMap<String, String>() {{
-        put("10", "десять");
-        put("11", "одиннадцать");
-        put("12", "двенадцать");
-        put("13", "тринадцать");
-        put("14", "четырнадцать");
-        put("15", "пятнадцать");
-        put("16", "шестнадцать");
-        put("17", "семнадцать");
-        put("18", "восемнадцать");
-        put("19", "девятнадцать");
-    }};
-
     public Digit() {
-        this.currentGender = NamedOrder.Gender.MASCULINE;
+        this.currentGender          = NamedOrder.Gender.MASCULINE;
+        this.requiredNamedOrderCase = NamedOrder.Case.GENITIVE;
+        this.requiredNamedOrderForm = NamedOrder.Form.PLURAL;
     }
 
     public void setDigit(String digit) {
@@ -84,14 +56,17 @@ public class Digit {
     }
 
     public String getForm(NamedOrder.Gender gender) {
-        return forms.get(gender);
+        final String result = forms.get(gender);
+        return result == null ? "" : result;
     }
 
     public void setForm(NamedOrder.Gender gender, String form) {
         forms.put(gender, form);
     }
 
-    public Map<NamedOrder.Gender, String> getForms() { return this.forms; }
+    public Map<NamedOrder.Gender, String> getForms()           { return this.forms; }
+
+    public void setForms(Map<NamedOrder.Gender, String> forms) { this.forms = forms; }
 
     public String toString() {
         String result = forms.get(currentGender);
