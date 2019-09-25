@@ -1,7 +1,5 @@
 package org.klaster.services;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -72,15 +70,15 @@ public class DigitsRepositoryTest {
 
     private static Stream<Arguments> hundreds() {
         return Stream.of(
-                Arguments.of("1", 2, "сто", "", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
-                Arguments.of("2", 2, "двести", "", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
-                Arguments.of("3", 2, "триста", "", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
-                Arguments.of("4", 2, "четыреста", "", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
-                Arguments.of("5", 2, "пятьсот", "", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
-                Arguments.of("6", 2, "шестьсот", "", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
-                Arguments.of("7", 2, "семьсот", "", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
-                Arguments.of("8", 2, "восемьсот", "", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
-                Arguments.of("9", 2, "девятьсот", "", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE)
+                Arguments.of("1", 2, "сто", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
+                Arguments.of("2", 2, "двести", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
+                Arguments.of("3", 2, "триста", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
+                Arguments.of("4", 2, "четыреста", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
+                Arguments.of("5", 2, "пятьсот", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
+                Arguments.of("6", 2, "шестьсот", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
+                Arguments.of("7", 2, "семьсот", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
+                Arguments.of("8", 2, "восемьсот", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
+                Arguments.of("9", 2, "девятьсот", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE)
         );
     }
 
@@ -96,13 +94,11 @@ public class DigitsRepositoryTest {
                    "numbersBetweenTenAndTwenty", "tens", "hundreds"})
     void getsDigitByPositionInTripleAndDigit(String digit, int positionInTriple, String expectedMasculineForm,
                                              String expectedFeminineForm,
-                                             String expectedNeuterForm,
                                              NamedOrder.Form expectedRequiredNamedOrderForm,
                                              NamedOrder.Case expectedRequiredNamedOrderCase) {
         Digit actualDigit = digitsRepository.getDigitByPositionInTripleAndDigit(digit, positionInTriple);
         assertEquals(expectedMasculineForm, actualDigit.toString());
         assertEquals(expectedFeminineForm, actualDigit.getForm(NamedOrder.Gender.FEMININE));
-        assertEquals(expectedNeuterForm, actualDigit.getForm(NamedOrder.Gender.NEUTER));
         assertEquals(expectedRequiredNamedOrderForm, actualDigit.getRequiredNamedOrderForm());
         assertEquals(expectedRequiredNamedOrderCase, actualDigit.getRequiredNamedOrderCase());
         assertEquals(NamedOrder.Gender.MASCULINE, actualDigit.getCurrentGender());
