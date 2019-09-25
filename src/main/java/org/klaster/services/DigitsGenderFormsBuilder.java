@@ -31,6 +31,7 @@ public class DigitsGenderFormsBuilder {
     }
 
     public String getResult() {
+        assert(digit != null);
         String result = digit.getGenderForm(gender);
         if (result.isEmpty() && gender != NamedOrder.Gender.MASCULINE) {
             result = digit.getGenderForm(NamedOrder.Gender.MASCULINE);
