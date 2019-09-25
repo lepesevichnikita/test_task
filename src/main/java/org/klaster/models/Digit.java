@@ -8,18 +8,28 @@ import java.util.Map;
  * @project testtask
  */
 public class Digit {
+    private Map<NamedOrder.Gender, String> forms = new HashMap<NamedOrder.Gender, String>() {{
+        put(NamedOrder.Gender.FEMININE, "");
+        put(NamedOrder.Gender.MASCULINE, "");
+    }};
+    private NamedOrder.Case                requiredNamedOrderCase;
+    private NamedOrder.Form                requiredNamedOrderForm;
+    private NamedOrder.Gender              currentGender;
+    private String                         digit;
+    private int                            positionInTriple;
+
     public Digit() {
         this.currentGender          = NamedOrder.Gender.MASCULINE;
         this.requiredNamedOrderCase = NamedOrder.Case.GENITIVE;
         this.requiredNamedOrderForm = NamedOrder.Form.PLURAL;
     }
 
-    public void setDigit(String digit) {
-        this.digit = digit;
-    }
-
     public String getDigit() {
         return digit;
+    }
+
+    public void setDigit(String digit) {
+        this.digit = digit;
     }
 
     public NamedOrder.Form getRequiredNamedOrderForm() {
@@ -45,7 +55,6 @@ public class Digit {
     public void setCurrentGender(NamedOrder.Gender currentGender) {
         this.currentGender = currentGender;
     }
-
 
     public int getPositionInTriple() {
         return positionInTriple;
@@ -73,17 +82,4 @@ public class Digit {
         result = result.isEmpty() ? forms.get(NamedOrder.Gender.MASCULINE) : result;
         return result;
     }
-
-    private Map<NamedOrder.Gender, String> forms = new HashMap<NamedOrder.Gender, String>() {{
-        put(NamedOrder.Gender.FEMININE, "");
-        put(NamedOrder.Gender.NEUTER, "");
-        put(NamedOrder.Gender.MASCULINE, "");
-    }};
-
-
-    private NamedOrder.Case   requiredNamedOrderCase;
-    private NamedOrder.Form   requiredNamedOrderForm;
-    private NamedOrder.Gender currentGender;
-    private String            digit;
-    private int               positionInTriple;
 }

@@ -8,97 +8,71 @@ import java.util.Map;
  * @project testtask
  */
 public class NamedOrder {
-    private Map<Form, Map<Case, String>> forms = new HashMap<Form, Map<Case, String>>() {{
-        put(Form.SINGULAR, new HashMap<Case, String>() {{
-            put(Case.NOMINATIVE, "");
-            put(Case.GENITIVE, "");
-        }});
-        put(Form.PLURAL, new HashMap<Case, String>() {{
-            put(Case.NOMINATIVE, "");
-            put(Case.GENITIVE, "");
-        }});
-    }};
-    private Case                         currentCase;
-    private Form                         currentForm;
-    private Gender                       requiredDigitsGender;
+    private Map<Form, Map<Case, String>> forms;
+    private Gender                       gender;
     private int                          namedOrderNumber;
+    private String                       root;
 
     public NamedOrder() {
-        this.requiredDigitsGender = Gender.MASCULINE;
-        this.currentForm          = Form.SINGULAR;
-        this.currentCase          = Case.NOMINATIVE;
+        this.gender = Gender.MASCULINE;
+        this.forms  = new HashMap<Form, Map<Case, String>>();
     }
 
-    public Gender getRequiredDigitsGender() {
-        return requiredDigitsGender;
-    }
+    public Gender getGender()                               { return gender; }
 
-    public void setRequiredDigitsGender(Gender requiredDigitsGender) {
-        this.requiredDigitsGender = requiredDigitsGender;
-    }
+    public void setGender(Gender gender)                    { this.gender = gender; }
 
-    public Form getCurrentForm() {
-        return currentForm;
-    }
 
-    public void setCurrentForm(Form currentForm) {
-        this.currentForm = currentForm;
-    }
+    public int getNamedOrderNumber()                        { return namedOrderNumber; }
 
-    public Case getCurrentCase() {
-        return currentCase;
-    }
+    public void setNamedOrderNumber(int namedOrderNumber)   { this.namedOrderNumber = namedOrderNumber; }
 
-    public void setCurrentCase(Case currentCase) {
-        this.currentCase = currentCase;
-    }
 
-    public int getNamedOrderNumber() {
-        return namedOrderNumber;
-    }
+    public String getSingular(Case wordCase)                { return getSingularCases().get(wordCase); }
 
-    public void setNamedOrderNumber(int namedOrderNumber) {
-        this.namedOrderNumber = namedOrderNumber;
-    }
+    public void setSingular(Case wordCase, String word)     { getSingularCases().put(wordCase, word); }
 
-    public void setSingular(Case wordCase, String word) {
-        getSingular().put(wordCase, word);
-    }
+    public String getPlural(Case wordCase)                  {return getPluralCases().get(wordCase);}
 
-    public void setPlural(Case wordCase, String word) {
-        getPlural().put(wordCase, word);
-    }
+    public void setPlural(Case wordCase, String word)       { getPluralCases().put(wordCase, word); }
 
-    public String getSingular(Case wordCase) {
-        return getSingular().get(wordCase);
-    }
 
-    public String getPlural(Case wordCase) {
-        return getPlural().get(wordCase);
-    }
+    public Map<Case, String> getCasesByForm(Form form)      { return forms.get(form); }
 
-    public Map<Case, String> getSingular() {
-        return this.forms.get(Form.SINGULAR);
-    }
+    public void setForm(Form form, Map<Case, String> cases) { forms.put(form, cases); }
 
-    public Map<Case, String> getPlural() {
-        return this.forms.get(Form.PLURAL);
+    public Map<Case, String> getSingularCases()             { return initOrGetCasesByForm(Form.SINGULAR); }
+
+    public Map<Case, String> getPluralCases()               { return initOrGetCasesByForm(Form.PLURAL); }
+
+    public Map<Case, String> initOrGetCasesByForm(Form form) {
+        Map<Case, String> result = getCasesByForm(form);
+        if (result == null) {
+            result = new HashMap<Case, String>() {{
+                put(Case.NOMINATIVE, "");
+                put(Case.GENITIVE, "");
+            }};
+            setForm(form, result);
+        }
+        return result;
     }
 
     public Map<Form, Map<Case, String>> getForms()           { return forms; }
 
     public void setForms(Map<Form, Map<Case, String>> forms) { this.forms = forms; }
 
-    public String toString() {
-        return this.forms.get(currentForm).get(currentCase);
-    }
+    public String getRoot()                                  {return root; }
+
+    public void setRoot(String root)                         {this.root = root; }
 
     public enum Form {
         PLURAL, SINGULAR
     }
+
     public enum Gender {
-        MASCULINE, FEMININE, NEUTER
+        MASCULINE, FEMININE
     }
+
     public enum Case {
         NOMINATIVE, GENITIVE
     }

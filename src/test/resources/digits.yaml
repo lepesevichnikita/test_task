@@ -10,7 +10,6 @@ digits:
     forms:
       MASCULINE: "один"
       FEMININE: "одна"
-      NEUTER: "одно"
     requiredNamedOrderForm: SINGULAR
     requiredNamedOrderCase: NOMINATIVE
   -
