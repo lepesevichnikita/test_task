@@ -1,5 +1,6 @@
 package org.klaster.services;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,7 +19,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 
 public class DigitsRepositoryTest {
-    private DigitsRepository digitsRepository = digitsRepository = DigitsRepository.loadRepository();
+    static DigitsRepository digitsRepository;
+
+    @BeforeAll
+    static void init() {
+        digitsRepository = DigitsRepository.loadRepository();
+    }
 
     private static Stream<Arguments> digitsWithFeminineAndNeuterFormsUnderTen() {
         return Stream.of(
@@ -85,18 +91,23 @@ public class DigitsRepositoryTest {
     @Test
     @DisplayName("Has 38 digits")
     void hasThirtyEightDigits() {
-        assertEquals( 37, digitsRepository.getDigits().size());
+        assertEquals(37, digitsRepository.getDigits().size());
     }
 
     @ParameterizedTest
     @DisplayName("Returns Digit by position in triple and digit")
-    @MethodSource({"digitsWithFeminineAndNeuterFormsUnderTen", "digitsWithoutFeminineAndNeuterFormsUnderTen",
-                   "numbersBetweenTenAndTwenty", "tens", "hundreds"})
-    void getsDigitByPositionInTripleAndDigit(String digit, int positionInTriple, String expectedMasculineForm,
+    @MethodSource({
+                          "digitsWithFeminineAndNeuterFormsUnderTen",
+                          "digitsWithoutFeminineAndNeuterFormsUnderTen",
+                          "numbersBetweenTenAndTwenty",
+                          "tens",
+                          "hundreds"
+                  })
+    void getsDigitByPositionInTripleAndDigit(String symbol, int positionInTriple, String expectedMasculineForm,
                                              String expectedFeminineForm,
                                              NamedOrder.Form expectedRequiredNamedOrderForm,
                                              NamedOrder.Case expectedRequiredNamedOrderCase) {
-        Digit actualDigit = digitsRepository.getDigitByPositionInTripleAndDigit(digit, positionInTriple);
+        Digit actualDigit = digitsRepository.getDigitByPositionInTripleAndSymbol(symbol, positionInTriple);
         assertEquals(expectedMasculineForm, actualDigit.getGenderForm(NamedOrder.Gender.MASCULINE));
         assertEquals(expectedFeminineForm, actualDigit.getGenderForm(NamedOrder.Gender.FEMININE));
         assertEquals(expectedRequiredNamedOrderForm, actualDigit.getForm());
