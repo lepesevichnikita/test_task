@@ -40,7 +40,7 @@ public class DigitsRepository {
         Yaml yaml = new Yaml(ctr);
         InputStream inputStream = DigitsRepository.class
                 .getClassLoader()
-                .getResourceAsStream("dictionary.yaml");
+                .getResourceAsStream("digits.yaml");
         DigitsRepository result = yaml.load(inputStream);
         return result;
     }

@@ -8,7 +8,7 @@ import java.util.Map;
  * @project testtask
  */
 public class NamedOrder {
-    private final Map<Form, Map<Case, String>> forms = new HashMap<Form, Map<Case, String>>() {{
+    private Map<Form, Map<Case, String>> forms = new HashMap<Form, Map<Case, String>>() {{
         put(Form.SINGULAR, new HashMap<Case, String>() {{
             put(Case.NOMINATIVE, "");
             put(Case.GENITIVE, "");
@@ -18,38 +18,39 @@ public class NamedOrder {
             put(Case.GENITIVE, "");
         }});
     }};
-    private Case   wordCase;
-    private Form   wordForm;
-    private Gender wordGender;
-    private int    namedOrderNumber;
+    private Case                         currentCase;
+    private Form                         currentForm;
+    private Gender                       requiredDigitsGender;
+    private int                          namedOrderNumber;
 
     public NamedOrder() {
-        this.wordForm = Form.SINGULAR;
-        this.wordCase = Case.NOMINATIVE;
+        this.requiredDigitsGender = Gender.MASCULINE;
+        this.currentForm          = Form.SINGULAR;
+        this.currentCase          = Case.NOMINATIVE;
     }
 
-    public Gender getWordGender() {
-        return wordGender;
+    public Gender getRequiredDigitsGender() {
+        return requiredDigitsGender;
     }
 
-    public void setWordGender(Gender wordGender) {
-        this.wordGender = wordGender;
+    public void setRequiredDigitsGender(Gender requiredDigitsGender) {
+        this.requiredDigitsGender = requiredDigitsGender;
     }
 
-    public Form getWordForm() {
-        return wordForm;
+    public Form getCurrentForm() {
+        return currentForm;
     }
 
-    public void setWordForm(Form wordForm) {
-        this.wordForm = wordForm;
+    public void setCurrentForm(Form currentForm) {
+        this.currentForm = currentForm;
     }
 
-    public Case getWordCase() {
-        return wordCase;
+    public Case getCurrentCase() {
+        return currentCase;
     }
 
-    public void setWordCase(Case wordCase) {
-        this.wordCase = wordCase;
+    public void setCurrentCase(Case currentCase) {
+        this.currentCase = currentCase;
     }
 
     public int getNamedOrderNumber() {
@@ -84,9 +85,14 @@ public class NamedOrder {
         return this.forms.get(Form.PLURAL);
     }
 
+    public Map<Form, Map<Case, String>> getForms()           { return forms; }
+
+    public void setForms(Map<Form, Map<Case, String>> forms) { this.forms = forms; }
+
     public String toString() {
-        return this.forms.get(wordForm).get(wordCase);
+        return this.forms.get(currentForm).get(currentCase);
     }
+
     public enum Form {
         PLURAL, SINGULAR
     }
