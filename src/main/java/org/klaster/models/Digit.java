@@ -8,78 +8,46 @@ import java.util.Map;
  * @project testtask
  */
 public class Digit {
-    private Map<NamedOrder.Gender, String> forms = new HashMap<NamedOrder.Gender, String>() {{
-        put(NamedOrder.Gender.FEMININE, "");
-        put(NamedOrder.Gender.MASCULINE, "");
-    }};
-    private NamedOrder.Case                requiredNamedOrderCase;
-    private NamedOrder.Form                requiredNamedOrderForm;
-    private NamedOrder.Gender              currentGender;
+    private Map<NamedOrder.Gender, String> genders;
+    private NamedOrder.Case                aCase;
+    private NamedOrder.Form                form;
     private String                         digit;
     private int                            positionInTriple;
 
     public Digit() {
-        this.currentGender          = NamedOrder.Gender.MASCULINE;
-        this.requiredNamedOrderCase = NamedOrder.Case.GENITIVE;
-        this.requiredNamedOrderForm = NamedOrder.Form.PLURAL;
+        this.aCase   = NamedOrder.Case.GENITIVE;
+        this.form    = NamedOrder.Form.PLURAL;
+        this.genders = new HashMap<NamedOrder.Gender, String>();
     }
 
-    public String getDigit() {
-        return digit;
-    }
+    public String getDigit()                              { return digit; }
 
-    public void setDigit(String digit) {
-        this.digit = digit;
-    }
+    public void setDigit(String digit)                    { this.digit = digit; }
 
-    public NamedOrder.Form getRequiredNamedOrderForm() {
-        return requiredNamedOrderForm;
-    }
+    public NamedOrder.Form getForm()                      { return form; }
 
-    public void setRequiredNamedOrderForm(NamedOrder.Form requiredNamedOrderForm) {
-        this.requiredNamedOrderForm = requiredNamedOrderForm;
-    }
+    public void setForm(NamedOrder.Form form)             { this.form = form; }
 
-    public NamedOrder.Case getRequiredNamedOrderCase() {
-        return requiredNamedOrderCase;
-    }
+    public NamedOrder.Case getCase()                      { return aCase; }
 
-    public void setRequiredNamedOrderCase(NamedOrder.Case requiredNamedOrderCase) {
-        this.requiredNamedOrderCase = requiredNamedOrderCase;
-    }
+    public void setCase(NamedOrder.Case aCase)            { this.aCase = aCase; }
 
-    public NamedOrder.Gender getCurrentGender() {
-        return currentGender;
-    }
+    public int getPositionInTriple()                      { return positionInTriple; }
 
-    public void setCurrentGender(NamedOrder.Gender currentGender) {
-        this.currentGender = currentGender;
-    }
-
-    public int getPositionInTriple() {
-        return positionInTriple;
-    }
-
-    public void setPositionInTriple(int positionInTriple) {
-        this.positionInTriple = positionInTriple;
-    }
+    public void setPositionInTriple(int positionInTriple) { this.positionInTriple = positionInTriple; }
 
     public String getForm(NamedOrder.Gender gender) {
-        final String result = forms.get(gender);
-        return result == null ? "" : result;
-    }
-
-    public void setForm(NamedOrder.Gender gender, String form) {
-        forms.put(gender, form);
-    }
-
-    public Map<NamedOrder.Gender, String> getForms()           { return this.forms; }
-
-    public void setForms(Map<NamedOrder.Gender, String> forms) { this.forms = forms; }
-
-    public String toString() {
-        String result = forms.get(currentGender);
-        result = result.isEmpty() ? forms.get(NamedOrder.Gender.MASCULINE) : result;
+        String result = genders.get(gender);
+        if (result == null) {
+            result = "";
+            genders.put(gender, result);
+        }
         return result;
     }
+
+    public void setGenderForm(NamedOrder.Gender gender, String form) { genders.put(gender, form); }
+
+    public Map<NamedOrder.Gender, String> getGenders()               { return this.genders; }
+
+    public void setGenders(Map<NamedOrder.Gender, String> genders)   { this.genders = genders; }
 }
