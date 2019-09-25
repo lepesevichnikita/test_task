@@ -20,7 +20,7 @@ public class DigitTest {
     private static Stream<Arguments> digitsWithFeminineAndNeuterFormsUnderTen() {
         return Stream.of(
                 Arguments.of("1", 0, "один", "одна", "одно", NamedOrder.Form.SINGULAR, NamedOrder.Case.NOMINATIVE),
-                Arguments.of("2", 0, "два", "две", "", NamedOrder.Form.SINGULAR, NamedOrder.Case.GENITIVE)
+                Arguments.of("2", 0, "два", "две", "два", NamedOrder.Form.SINGULAR, NamedOrder.Case.GENITIVE)
         );
     }
 
@@ -112,25 +112,25 @@ public class DigitTest {
     @MethodSource("digitsWithFeminineAndNeuterFormsUnderTen")
     void digitsWithFeminineAndNeuterForms(String digit,
                                                      int positionInTriple,
-                                                     String masculineForm,
-                                                     String feminineForm,
-                                                     String neuterForm,
+                                                     String expectedMasculineForm,
+                                                     String expectedFeminineForm,
+                                                     String expectedNeuterForm,
                                                      NamedOrder.Form requiredNamedOrderForm,
                                                      NamedOrder.Case requiredNamedOrderCase) {
         this.digit = new Digit();
         this.digit.setDigit(digit);
         this.digit.setPositionInTriple(positionInTriple);
-        this.digit.setForm(NamedOrder.Gender.MASCULINE, masculineForm);
-        this.digit.setForm(NamedOrder.Gender.FEMININE, feminineForm);
-        this.digit.setForm(NamedOrder.Gender.NEUTER, neuterForm);
+        this.digit.setForm(NamedOrder.Gender.MASCULINE, expectedMasculineForm);
+        this.digit.setForm(NamedOrder.Gender.FEMININE, expectedFeminineForm);
+        this.digit.setForm(NamedOrder.Gender.NEUTER, expectedNeuterForm);
         this.digit.setRequiredNamedOrderForm(requiredNamedOrderForm);
         this.digit.setRequiredNamedOrderCase(requiredNamedOrderCase);
-        assertEquals(this.digit.toString(), masculineForm);
+        assertEquals(this.digit.toString(), expectedMasculineForm);
 
         this.digit.setCurrentGender(NamedOrder.Gender.FEMININE);
-        assertEquals(this.digit.toString(), feminineForm);
+        assertEquals(expectedFeminineForm, this.digit.toString());
 
         this.digit.setCurrentGender(NamedOrder.Gender.NEUTER);
-        assertEquals(this.digit.toString(), neuterForm);
+        assertEquals(expectedNeuterForm, this.digit.toString());
     }
 }
