@@ -26,7 +26,7 @@ public class DigitsRepository {
         this.digits = digits;
     }
 
-    public Digit getDigitByPositionInTripleAndDigit(String symbol, int positionInTriple) {
+    public Digit getDigitByPositionInTripleAndSymbol(String symbol, int positionInTriple) {
         Digit result =
                 digits.parallelStream()
                         .filter(d -> d.getSymbol().equals(symbol) && d.getPositionInTriple() == positionInTriple)
