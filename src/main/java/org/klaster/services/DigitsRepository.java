@@ -26,10 +26,10 @@ public class DigitsRepository {
         this.digits = digits;
     }
 
-    public Digit getDigitByPositionInTripleAndDigit(String digit, int positionInTriple) {
+    public Digit getDigitByPositionInTripleAndDigit(String symbol, int positionInTriple) {
         Digit result =
                 digits.parallelStream()
-                        .filter(d -> d.getDigit().equals(digit) && d.getPositionInTriple() == positionInTriple)
+                        .filter(d -> d.getSymbol().equals(symbol) && d.getPositionInTriple() == positionInTriple)
                         .findFirst()
                         .orElse(null);
         return result;

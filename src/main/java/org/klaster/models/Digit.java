@@ -11,7 +11,7 @@ public class Digit {
     private Map<NamedOrder.Gender, String> genders;
     private NamedOrder.Case                aCase;
     private NamedOrder.Form                form;
-    private String                         digit;
+    private String                         symbol;
     private int                            positionInTriple;
 
     public Digit() {
@@ -20,9 +20,9 @@ public class Digit {
         this.genders = new HashMap<NamedOrder.Gender, String>();
     }
 
-    public String getDigit()                              { return digit; }
+    public String getSymbol()                             { return symbol; }
 
-    public void setDigit(String digit)                    { this.digit = digit; }
+    public void setSymbol(String symbol)                  { this.symbol = symbol; }
 
     public NamedOrder.Form getForm()                      { return form; }
 
@@ -36,7 +36,9 @@ public class Digit {
 
     public void setPositionInTriple(int positionInTriple) { this.positionInTriple = positionInTriple; }
 
-    public String getForm(NamedOrder.Gender gender) {
+    public void setGenderForm(NamedOrder.Gender gender, String form) { genders.put(gender, form); }
+
+    public String getGenderForm(NamedOrder.Gender gender) {
         String result = genders.get(gender);
         if (result == null) {
             result = "";
@@ -44,8 +46,6 @@ public class Digit {
         }
         return result;
     }
-
-    public void setGenderForm(NamedOrder.Gender gender, String form) { genders.put(gender, form); }
 
     public Map<NamedOrder.Gender, String> getGenders()               { return this.genders; }
 
