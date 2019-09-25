@@ -14,10 +14,6 @@ namedOrders:
     forms:
       SINGULAR:
         NOMINATIVE: "тысяча"
-        GENETIVE: "тысячи"
-      PLURAL:
-        NOMINATIVE: "тысячи"
-        GENETIVE: "тысяч"
   -
     namedOrderNumber: 2,
     forms:
