@@ -91,14 +91,10 @@ public class DigitTest {
         this.digit = new Digit();
         this.digit.setDigit(digit);
         this.digit.setPositionInTriple(positionInTriple);
-        this.digit.setForm(NamedOrder.Gender.MASCULINE, masculineForm);
-        this.digit.setForm(NamedOrder.Gender.FEMININE, feminineForm);
-        this.digit.setRequiredNamedOrderForm(requiredNamedOrderForm);
-        this.digit.setRequiredNamedOrderCase(requiredNamedOrderCase);
-        assertEquals(this.digit.toString(), masculineForm);
-
-        this.digit.setCurrentGender(NamedOrder.Gender.FEMININE);
-        assertEquals(this.digit.toString(), masculineForm);
+        this.digit.setGenderForm(NamedOrder.Gender.MASCULINE, masculineForm);
+        this.digit.setGenderForm(NamedOrder.Gender.FEMININE, feminineForm);
+        this.digit.setForm(requiredNamedOrderForm);
+        this.digit.setCase(requiredNamedOrderCase);
     }
 
     @ParameterizedTest
@@ -113,14 +109,10 @@ public class DigitTest {
         this.digit = new Digit();
         this.digit.setDigit(digit);
         this.digit.setPositionInTriple(positionInTriple);
-        this.digit.setForm(NamedOrder.Gender.MASCULINE, expectedMasculineForm);
-        this.digit.setForm(NamedOrder.Gender.FEMININE, expectedFeminineForm);
-        this.digit.setRequiredNamedOrderForm(requiredNamedOrderForm);
-        this.digit.setRequiredNamedOrderCase(requiredNamedOrderCase);
+        this.digit.setGenderForm(NamedOrder.Gender.MASCULINE, expectedMasculineForm);
+        this.digit.setGenderForm(NamedOrder.Gender.FEMININE, expectedFeminineForm);
+        this.digit.setForm(requiredNamedOrderForm);
+        this.digit.setCase(requiredNamedOrderCase);
         assertEquals(this.digit.toString(), expectedMasculineForm);
-
-        this.digit.setCurrentGender(NamedOrder.Gender.FEMININE);
-        assertEquals(expectedFeminineForm, this.digit.toString());
-
     }
 }
