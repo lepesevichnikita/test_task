@@ -97,11 +97,10 @@ public class DigitsRepositoryTest {
                                              NamedOrder.Form expectedRequiredNamedOrderForm,
                                              NamedOrder.Case expectedRequiredNamedOrderCase) {
         Digit actualDigit = digitsRepository.getDigitByPositionInTripleAndDigit(digit, positionInTriple);
-        assertEquals(expectedMasculineForm, actualDigit.toString());
-        assertEquals(expectedFeminineForm, actualDigit.getForm(NamedOrder.Gender.FEMININE));
+        assertEquals(expectedMasculineForm, actualDigit.getGenderForm(NamedOrder.Gender.MASCULINE));
+        assertEquals(expectedFeminineForm, actualDigit.getGenderForm(NamedOrder.Gender.FEMININE));
         assertEquals(expectedRequiredNamedOrderForm, actualDigit.getForm());
         assertEquals(expectedRequiredNamedOrderCase, actualDigit.getCase());
-        assertEquals(NamedOrder.Gender.MASCULINE, actualDigit.getCurrentGender());
     }
 
 }
