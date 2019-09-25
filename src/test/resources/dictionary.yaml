@@ -1,0 +1,194 @@
+digits:
+  -
+    positionInTriple: 0
+    digit: "0"
+    forms:
+      MASCULINE: "ноль"
+  -
+    positionInTriple: 0
+    digit: "1"
+    forms:
+      MASCULINE: "один"
+      FEMININE: "одна"
+      NEUTER: "одно"
+    requiredNamedOrderForm: SINGULAR
+    requiredNamedOrderCase: NOMINATIVE
+  -
+    positionInTriple: 0
+    digit: "2"
+    forms:
+      MASCULINE: "два"
+      FEMININE: "две"
+    requiredNamedOrderForm: SINGULAR
+  -
+    positionInTriple: 0
+    digit: "3"
+    forms:
+      MASCULINE: "три"
+    requiredNamedOrderForm: SINGULAR
+  -
+    positionInTriple: 0
+    digit: "4"
+    forms:
+      MASCULINE: "четыре"
+    requiredNamedOrderForm: SINGULAR
+  -
+    positionInTriple: 0
+    digit: "5"
+    forms:
+      MASCULINE: "пять"
+  -
+    positionInTriple: 0
+    digit: "6"
+    forms:
+      MASCULINE: "шесть"
+  -
+    positionInTriple: 0
+    digit: "7"
+    forms:
+      MASCULINE: "семь"
+  -
+    positionInTriple: 0
+    digit: "8"
+    forms:
+      MASCULINE: "восемь"
+  -
+    positionInTriple: 0
+    digit: "9"
+    forms:
+      MASCULINE: "девять"
+  -
+    positionInTriple: 1
+    digit: "10"
+    forms:
+      MASCULINE: "десять"
+  -
+    positionInTriple: 1
+    digit: "11"
+    forms:
+      MASCULINE: "одиннадцать"
+  -
+    positionInTriple: 1
+    digit: "12"
+    forms:
+      MASCULINE: "двенадцать"
+  -
+    positionInTriple: 1
+    digit: "13"
+    forms:
+      MASCULINE: "тринадцать"
+  -
+    positionInTriple: 1
+    digit: "14"
+    forms:
+      MASCULINE: "четырнадцать"
+  -
+    positionInTriple: 1
+    digit: "15"
+    forms:
+      MASCULINE: "пятнадцать"
+  -
+    positionInTriple: 1
+    digit: "16"
+    forms:
+      MASCULINE: "шестнадцать"
+  -
+    positionInTriple: 1
+    digit: "17"
+    forms:
+      MASCULINE: "семнадцать"
+  -
+    positionInTriple: 1
+    digit: "18"
+    forms:
+      MASCULINE: "восемнадцать"
+  -
+    positionInTriple: 1
+    digit: "19"
+    forms:
+      MASCULINE: "девятнадцать"
+  -
+    positionInTriple: 1
+    digit: "2"
+    forms:
+      MASCULINE: "двадцать"
+  -
+    positionInTriple: 1
+    digit: "3"
+    forms:
+      MASCULINE: "тридцать"
+  -
+    positionInTriple: 1
+    digit: "4"
+    forms:
+      MASCULINE: "сорок"
+  -
+    positionInTriple: 1
+    digit: "5"
+    forms:
+      MASCULINE: "пятьдесят"
+  -
+    positionInTriple: 1
+    digit: "6"
+    forms:
+      MASCULINE: "шестьдесят"
+  -
+    positionInTriple: 1
+    digit: "7"
+    forms:
+      MASCULINE: "семьдесят"
+  -
+    positionInTriple: 1
+    digit: "8"
+    forms:
+      MASCULINE: "восемьдесят"
+  -
+    positionInTriple: 1
+    digit: "9"
+    forms:
+      MASCULINE: "девяносто"
+  -
+    positionInTriple: 2
+    digit: "1"
+    forms:
+      MASCULINE: "сто"
+  -
+    positionInTriple: 2
+    digit: "2"
+    forms:
+      MASCULINE: "двести"
+  -
+    positionInTriple: 2
+    digit: "3"
+    forms:
+      MASCULINE: "триста"
+  -
+    positionInTriple: 2
+    digit: "4"
+    forms:
+      MASCULINE: "четыреста"
+  -
+    positionInTriple: 2
+    digit: "5"
+    forms:
+      MASCULINE: "пятьсот"
+  -
+    positionInTriple: 2
+    digit: "6"
+    forms:
+      MASCULINE: "шестьсот"
+  -
+    positionInTriple: 2
+    digit: "7"
+    forms:
+      MASCULINE: "семьсот"
+  -
+    positionInTriple: 2
+    digit: "8"
+    forms:
+      MASCULINE: "восемьсот"
+  -
+    positionInTriple: 2
+    digit: "9"
+    forms:
+      MASCULINE: "девятьсот"

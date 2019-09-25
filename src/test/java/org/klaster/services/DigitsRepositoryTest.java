@@ -1,21 +1,26 @@
-package org.klaster.models;
+package org.klaster.services;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.klaster.models.Digit;
+import org.klaster.models.NamedOrder;
 
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/24/19
+ * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/25/19
  * @project testtask
  */
 
-public class DigitTest {
-    private Digit digit;
+public class DigitsRepositoryTest {
+    private DigitsRepository digitsRepository = digitsRepository = DigitsRepository.loadRepository();
 
     private static Stream<Arguments> digitsWithFeminineAndNeuterFormsUnderTen() {
         return Stream.of(
@@ -79,58 +84,28 @@ public class DigitTest {
         );
     }
 
-    @ParameterizedTest
-    @DisplayName("Converts base digits under 10 without feminine and neuter form to its masculine form in different " +
-                         "genders")
-    @MethodSource({"digitsWithoutFeminineAndNeuterFormsUnderTen", "numbersBetweenTenAndTwenty", "tens", "hundreds" })
-    void digitsWithoutFeminineAndNeuterFormsUnderTen(String digit,
-                                                     int positionInTriple,
-                                                     String masculineForm,
-                                                     String feminineForm,
-                                                     String neuterForm,
-                                                     NamedOrder.Form requiredNamedOrderForm,
-                                                     NamedOrder.Case requiredNamedOrderCase) {
-        this.digit = new Digit();
-        this.digit.setDigit(digit);
-        this.digit.setPositionInTriple(positionInTriple);
-        this.digit.setForm(NamedOrder.Gender.MASCULINE, masculineForm);
-        this.digit.setForm(NamedOrder.Gender.FEMININE, feminineForm);
-        this.digit.setForm(NamedOrder.Gender.NEUTER, neuterForm);
-        this.digit.setRequiredNamedOrderForm(requiredNamedOrderForm);
-        this.digit.setRequiredNamedOrderCase(requiredNamedOrderCase);
-        assertEquals(this.digit.toString(), masculineForm);
-
-        this.digit.setCurrentGender(NamedOrder.Gender.FEMININE);
-        assertEquals(this.digit.toString(), masculineForm);
-
-        this.digit.setCurrentGender(NamedOrder.Gender.NEUTER);
-        assertEquals(this.digit.toString(), masculineForm);
+    @Test
+    @DisplayName("Has 38 digits")
+    void hasThirtyEightDigits() {
+        assertEquals( 37, digitsRepository.getDigits().size());
     }
 
     @ParameterizedTest
-    @DisplayName("Converts base digits under 10 with feminine and neuter form to different forms in different genders")
-    @MethodSource("digitsWithFeminineAndNeuterFormsUnderTen")
-    void digitsWithFeminineAndNeuterForms(String digit,
-                                                     int positionInTriple,
-                                                     String masculineForm,
-                                                     String feminineForm,
-                                                     String neuterForm,
-                                                     NamedOrder.Form requiredNamedOrderForm,
-                                                     NamedOrder.Case requiredNamedOrderCase) {
-        this.digit = new Digit();
-        this.digit.setDigit(digit);
-        this.digit.setPositionInTriple(positionInTriple);
-        this.digit.setForm(NamedOrder.Gender.MASCULINE, masculineForm);
-        this.digit.setForm(NamedOrder.Gender.FEMININE, feminineForm);
-        this.digit.setForm(NamedOrder.Gender.NEUTER, neuterForm);
-        this.digit.setRequiredNamedOrderForm(requiredNamedOrderForm);
-        this.digit.setRequiredNamedOrderCase(requiredNamedOrderCase);
-        assertEquals(this.digit.toString(), masculineForm);
-
-        this.digit.setCurrentGender(NamedOrder.Gender.FEMININE);
-        assertEquals(this.digit.toString(), feminineForm);
-
-        this.digit.setCurrentGender(NamedOrder.Gender.NEUTER);
-        assertEquals(this.digit.toString(), neuterForm);
+    @DisplayName("Returns Digit by position in triple and digit")
+    @MethodSource({"digitsWithFeminineAndNeuterFormsUnderTen", "digitsWithoutFeminineAndNeuterFormsUnderTen",
+                   "numbersBetweenTenAndTwenty", "tens", "hundreds"})
+    void getsDigitByPositionInTripleAndDigit(String digit, int positionInTriple, String expectedMasculineForm,
+                                             String expectedFeminineForm,
+                                             String expectedNeuterForm,
+                                             NamedOrder.Form expectedRequiredNamedOrderForm,
+                                             NamedOrder.Case expectedRequiredNamedOrderCase) {
+        Digit actualDigit = digitsRepository.getDigitByPositionInTripleAndDigit(digit, positionInTriple);
+        assertEquals(expectedMasculineForm, actualDigit.toString());
+        assertEquals(expectedFeminineForm, actualDigit.getForm(NamedOrder.Gender.FEMININE));
+        assertEquals(expectedNeuterForm, actualDigit.getForm(NamedOrder.Gender.NEUTER));
+        assertEquals(expectedRequiredNamedOrderForm, actualDigit.getRequiredNamedOrderForm());
+        assertEquals(expectedRequiredNamedOrderCase, actualDigit.getRequiredNamedOrderCase());
+        assertEquals(NamedOrder.Gender.MASCULINE, actualDigit.getCurrentGender());
     }
+
 }
