@@ -1,5 +1,6 @@
 package org.klaster.models;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -16,63 +17,66 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class NamedOrderTest {
     private NamedOrder namedOrder;
 
-    private static Stream<Arguments> firstFiveNamedOrders() {
+    private static Stream<Arguments> firstTwoOrders() {
+
         return Stream.of(
-                Arguments.of(0, "", "", ""),
-                Arguments.of(1, "тысяча", "тысячи", "тысяч"),
-                Arguments.of(2, "миллион", "миллиона", "миллионов"),
-                Arguments.of(3, "миллиард", "миллиарда", "миллиардов"),
-                Arguments.of(4, "трилион", "триллиона", "триллионов"),
-                Arguments.of(5, "квадриллион", "квадриллиона", "квадриллионов")
+                Arguments.of(0, "", "", "", "", "", NamedOrder.Gender.MASCULINE),
+                Arguments.of(1, "тысяч", "тысяча", "тысячи", "тысячи", "тысяч", NamedOrder.Gender.FEMININE)
         );
     }
 
-    @ParameterizedTest
-    @DisplayName("Creates valid named order objects with default form and case")
-    @MethodSource("firstFiveNamedOrders")
-    void namedOrders(int namedOrderNumber, String singularNominativeExpected, String singularGenetiveExpected, String pluralGenetiveExpected) {
+    private static Stream<Arguments> namedOrdersFromTwoToFive() {
+        return Stream.of(
+                Arguments.of(2, "миллион", "", "", "", ""),
+                Arguments.of(3, "миллиард", "", "", "", ""),
+                Arguments.of(4, "трилион", "", "", "", ""),
+                Arguments.of(5, "квадриллион", "", "", "", "")
+        );
+    }
+
+    @BeforeEach
+    void init() {
         namedOrder = new NamedOrder();
-        namedOrder.setNamedOrderNumber(namedOrderNumber);
-        namedOrder.setSingular(NamedOrder.Case.NOMINATIVE, singularNominativeExpected);
-        namedOrder.setSingular(NamedOrder.Case.GENITIVE, singularGenetiveExpected);
-        namedOrder.setPlural(NamedOrder.Case.GENITIVE, pluralGenetiveExpected);
-        assertEquals(singularNominativeExpected, namedOrder.getSingular(NamedOrder.Case.NOMINATIVE));
-        assertEquals(singularGenetiveExpected, namedOrder.getSingular(NamedOrder.Case.GENITIVE));
-        assertEquals(pluralGenetiveExpected, namedOrder.getPlural(NamedOrder.Case.GENITIVE));
-        assertEquals(singularNominativeExpected, namedOrder.toString());
     }
 
     @ParameterizedTest
-    @DisplayName("Creates valid named order objects with default form and genetive case")
-    @MethodSource("firstFiveNamedOrders")
-    void namedOrdersInGenetvieCase(int namedOrderNumber, String singularNominativeExpected, String singularGenetiveExpected, String pluralGenetiveExpected) {
-        namedOrder = new NamedOrder();
+    @DisplayName("Creates valid named order, that have order number greater than 2 and default gender")
+    @MethodSource("namedOrdersFromTwoToFive")
+    void namedOrders(int namedOrderNumber, String root, String expectedSingularNominative,
+                     String expectedSingularGenitive,
+                     String expectedPluralNominative, String expectedPluralGenitive) {
+        namedOrder.setRoot(root);
         namedOrder.setNamedOrderNumber(namedOrderNumber);
-        namedOrder.setSingular(NamedOrder.Case.NOMINATIVE, singularNominativeExpected);
-        namedOrder.setSingular(NamedOrder.Case.GENITIVE, singularGenetiveExpected);
-        namedOrder.setPlural(NamedOrder.Case.GENITIVE, pluralGenetiveExpected);
-        namedOrder.setCurrentCase(NamedOrder.Case.GENITIVE);
-        assertEquals(singularNominativeExpected, namedOrder.getSingular(NamedOrder.Case.NOMINATIVE));
-        assertEquals(singularGenetiveExpected, namedOrder.getSingular(NamedOrder.Case.GENITIVE));
-        assertEquals(pluralGenetiveExpected, namedOrder.getPlural(NamedOrder.Case.GENITIVE));
-        assertEquals(singularGenetiveExpected, namedOrder.toString());
+        namedOrder.setSingular(NamedOrder.Case.NOMINATIVE, expectedSingularNominative);
+        namedOrder.setSingular(NamedOrder.Case.GENITIVE, expectedSingularGenitive);
+        namedOrder.setPlural(NamedOrder.Case.NOMINATIVE, expectedPluralNominative);
+        namedOrder.setPlural(NamedOrder.Case.GENITIVE, expectedPluralGenitive);
+
+        assertEquals(NamedOrder.Gender.MASCULINE, namedOrder.getGender());
+        assertEquals(expectedSingularNominative, namedOrder.getSingular(NamedOrder.Case.NOMINATIVE));
+        assertEquals(expectedSingularGenitive, namedOrder.getSingular(NamedOrder.Case.GENITIVE));
+        assertEquals(expectedPluralNominative, namedOrder.getPlural(NamedOrder.Case.NOMINATIVE));
+        assertEquals(expectedPluralGenitive, namedOrder.getPlural(NamedOrder.Case.GENITIVE));
     }
 
-
     @ParameterizedTest
-    @DisplayName("Creates valid named order objects with singular form and genetive case")
-    @MethodSource("firstFiveNamedOrders")
-    void pluralNamedOrdersInGenitiveCase(int namedOrderNumber, String singularNominativeExpected, String singularGenetiveExpected, String pluralGenetiveExpected) {
-        namedOrder = new NamedOrder();
+    @DisplayName("Creates valid named orders. that have order number less or equal than 2 and non-masculine gender")
+    @MethodSource("firstTwoOrders")
+    void namedOrders(int namedOrderNumber, String root, String expectedSingularNominative,
+                     String expectedSingularGenitive,
+                     String expectedPluralNominative, String expectedPluralGenitive, NamedOrder.Gender expectedGender) {
+        namedOrder.setRoot(root);
         namedOrder.setNamedOrderNumber(namedOrderNumber);
-        namedOrder.setSingular(NamedOrder.Case.NOMINATIVE, singularNominativeExpected);
-        namedOrder.setSingular(NamedOrder.Case.GENITIVE, singularGenetiveExpected);
-        namedOrder.setPlural(NamedOrder.Case.GENITIVE, pluralGenetiveExpected);
-        namedOrder.setCurrentForm(NamedOrder.Form.PLURAL);
-        namedOrder.setCurrentCase(NamedOrder.Case.GENITIVE);
-        assertEquals(singularNominativeExpected, namedOrder.getSingular(NamedOrder.Case.NOMINATIVE));
-        assertEquals(singularGenetiveExpected, namedOrder.getSingular(NamedOrder.Case.GENITIVE));
-        assertEquals(pluralGenetiveExpected, namedOrder.getPlural(NamedOrder.Case.GENITIVE));
-        assertEquals(pluralGenetiveExpected, namedOrder.toString());
+        namedOrder.setSingular(NamedOrder.Case.NOMINATIVE, expectedSingularNominative);
+        namedOrder.setSingular(NamedOrder.Case.GENITIVE, expectedSingularGenitive);
+        namedOrder.setPlural(NamedOrder.Case.NOMINATIVE, expectedPluralNominative);
+        namedOrder.setPlural(NamedOrder.Case.GENITIVE, expectedPluralGenitive);
+        namedOrder.setGender(expectedGender);
+
+        assertEquals(expectedGender, namedOrder.getGender());
+        assertEquals(expectedSingularNominative, namedOrder.getSingular(NamedOrder.Case.NOMINATIVE));
+        assertEquals(expectedSingularGenitive, namedOrder.getSingular(NamedOrder.Case.GENITIVE));
+        assertEquals(expectedPluralNominative, namedOrder.getPlural(NamedOrder.Case.NOMINATIVE));
+        assertEquals(expectedPluralGenitive, namedOrder.getPlural(NamedOrder.Case.GENITIVE));
     }
 }
