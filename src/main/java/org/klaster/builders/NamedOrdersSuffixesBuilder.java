@@ -1,4 +1,4 @@
-package org.klaster.services;
+package org.klaster.builders;
 
 import org.klaster.models.NamedOrder;
 import org.klaster.models.Suffix;

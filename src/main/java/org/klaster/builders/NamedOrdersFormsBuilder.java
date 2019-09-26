@@ -1,7 +1,7 @@
 package org.klaster.services;
 
+import org.klaster.builders.NamedOrdersSuffixesBuilder;
 import org.klaster.models.NamedOrder;
-
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/25/19
  * @project testtask
