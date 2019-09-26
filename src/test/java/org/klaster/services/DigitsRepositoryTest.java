@@ -11,8 +11,6 @@ import org.klaster.models.NamedOrder;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/25/19
  * @project testtask
@@ -105,13 +103,13 @@ public class DigitsRepositoryTest {
                   })
     void getsDigitByPositionInTripleAndDigit(String symbol, int positionInTriple, String expectedMasculineForm,
                                              String expectedFeminineForm,
-                                             NamedOrder.Form expectedRequiredNamedOrderForm,
-                                             NamedOrder.Case expectedRequiredNamedOrderCase) {
+                                             NamedOrder.Form expectedForm,
+                                             NamedOrder.Case expectedCase) {
         Digit actualDigit = digitsRepository.getDigitByPositionInTripleAndSymbol(symbol, positionInTriple);
         assertEquals(expectedMasculineForm, actualDigit.getGenderForm(NamedOrder.Gender.MASCULINE));
         assertEquals(expectedFeminineForm, actualDigit.getGenderForm(NamedOrder.Gender.FEMININE));
-        assertEquals(expectedRequiredNamedOrderForm, actualDigit.getForm());
-        assertEquals(expectedRequiredNamedOrderCase, actualDigit.getCase());
+        assertEquals(expectedForm, actualDigit.getForm());
+        assertEquals(expectedCase, actualDigit.getCase());
     }
 
 }
