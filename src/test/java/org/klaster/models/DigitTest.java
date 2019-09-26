@@ -1,5 +1,7 @@
 package org.klaster.models;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -16,6 +18,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DigitTest {
     private Digit digit;
+
+    @BeforeEach
+    void init() {
+        digit = new Digit();
+    }
 
     private static Stream<Arguments> digitsWithFeminineAndNeuterFormsUnderTen() {
         return Stream.of(
@@ -94,7 +101,6 @@ public class DigitTest {
                                                      String feminineForm,
                                                      NamedOrder.Form requiredNamedOrderForm,
                                                      NamedOrder.Case requiredNamedOrderCase) {
-        digit = new Digit();
         digit.setSymbol(symbol);
         digit.setPositionInTriple(positionInTriple);
         digit.setGenderForm(NamedOrder.Gender.MASCULINE, masculineForm);
