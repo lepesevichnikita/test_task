@@ -61,4 +61,6 @@ public class TripleSequenceFactoryTest {
         TripleSequence tripleSequence = tripleSequenceFactory.createTripleSequence();
         assertEquals(expectedTriplesCount, tripleSequence.getTriples().size());
     }
+
+
 }
