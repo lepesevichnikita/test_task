@@ -1,4 +1,4 @@
-package org.klaster.services;
+package org.klaster.builders;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;

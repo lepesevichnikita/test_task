@@ -1,7 +1,8 @@
-package org.klaster.services;
+package org.klaster.builders;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -19,6 +20,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class DigitsGenderFormsBuilderTest {
     static DigitsGenderFormsBuilder digitsGenderFormsBuilder;
+    Digit digit;
+
+    @BeforeEach
+    private void initPrivate() {
+        digit = new Digit();
+    }
 
     @BeforeAll
     static void init() {
@@ -97,7 +104,6 @@ public class DigitsGenderFormsBuilderTest {
     void buildsGenderFormsOfDigitsWithoutFeminineForm(String digitSymbol, int positionInTriple,
                                                       String expectedMasculineForm,
                                                       String expectedFeminineForm) {
-        Digit digit = new Digit();
         digit.setSymbol(digitSymbol);
         digit.setPositionInTriple(positionInTriple);
         digit.setGenderForm(NamedOrder.Gender.MASCULINE, expectedMasculineForm);
@@ -116,7 +122,6 @@ public class DigitsGenderFormsBuilderTest {
     void buildsGenderFormsOfDigitsWithFeminineForm(String digitSymbol, int positionInTriple,
                                                    String expectedMasculineForm,
                                                       String expectedFeminineForm) {
-        Digit digit = new Digit();
         digit.setSymbol(digitSymbol);
         digit.setPositionInTriple(positionInTriple);
         digit.setGenderForm(NamedOrder.Gender.MASCULINE, expectedMasculineForm);
