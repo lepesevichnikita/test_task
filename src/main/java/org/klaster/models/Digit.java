@@ -1,6 +1,5 @@
 package org.klaster.models;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,12 +12,6 @@ public class Digit {
     private NamedOrder.Form                form;
     private String                         symbol;
     private int                            positionInTriple;
-
-    public Digit() {
-        this.aCase   = NamedOrder.Case.GENITIVE;
-        this.form    = NamedOrder.Form.PLURAL;
-        this.genders = new HashMap<NamedOrder.Gender, String>();
-    }
 
     public String getSymbol()                             { return symbol; }
 

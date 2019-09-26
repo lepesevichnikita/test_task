@@ -1,6 +1,7 @@
 package org.klaster.services;
 
 import org.klaster.models.Digit;
+import org.klaster.models.NamedOrder;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -42,6 +43,10 @@ public class DigitsRepository {
                 .getClassLoader()
                 .getResourceAsStream("digits.yaml");
         DigitsRepository result = yaml.load(inputStream);
+        result.digits.forEach(d -> {
+            if (d.getCase() == null) d.setCase(NamedOrder.Case.GENITIVE);
+            if (d.getForm() == null) d.setForm(NamedOrder.Form.PLURAL);
+        });
         return result;
     }
 }

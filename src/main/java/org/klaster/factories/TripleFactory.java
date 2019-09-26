@@ -1,5 +1,6 @@
-package org.klaster.builders;
+package org.klaster.factories;
 
+import org.klaster.builders.TripleBuilder;
 import org.klaster.models.Digit;
 import org.klaster.models.Triple;
 import org.klaster.services.DigitsRepository;
@@ -25,6 +26,7 @@ public class TripleFactory {
         int sourceLength = source.length();
         assert (sourceLength <= 3);
         assert (tripleBuilder != null);
+        tripleBuilder.reset();
         if (!isEmptyNumber()) {
             if (isZeroNumber()) { addZeroToTripleBuilder(); }
             else {
@@ -40,6 +42,18 @@ public class TripleFactory {
         }
         Triple result = tripleBuilder.getResult();
         return result;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public void setDigitsRepository(DigitsRepository digitsRepository) {
+        this.digitsRepository = digitsRepository;
     }
 
     private void addDigitsToBuilderByPositionInTripleAndSymbol(String symbol, int positionInTriple) {
@@ -81,15 +95,4 @@ public class TripleFactory {
         return result;
     }
 
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public void setDigitsRepository(DigitsRepository digitsRepository) {
-        this.digitsRepository = digitsRepository;
-    }
 }
