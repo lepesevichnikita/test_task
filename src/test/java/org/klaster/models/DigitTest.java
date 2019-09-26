@@ -1,15 +1,13 @@
 package org.klaster.models;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.klaster.builders.DigitBuilder;
 
 import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/24/19
@@ -21,7 +19,7 @@ public class DigitTest {
 
     @BeforeEach
     void init() {
-        digit = new Digit();
+        digit = new DigitBuilder().getResult();
     }
 
     private static Stream<Arguments> digitsWithFeminineAndNeuterFormsUnderTen() {
