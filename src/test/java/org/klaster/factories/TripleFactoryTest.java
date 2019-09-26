@@ -12,6 +12,8 @@ import org.klaster.services.DigitsRepository;
 
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/25/19
  * @project testtask
@@ -59,5 +61,4 @@ public class TripleFactoryTest {
         Triple result = tripleFactory.createTriple();
         assertEquals(expectedDigitsCount, result.getDigits().size());
     }
-
 }
