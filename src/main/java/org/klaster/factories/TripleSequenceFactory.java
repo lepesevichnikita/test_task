@@ -64,7 +64,8 @@ public class TripleSequenceFactory {
     }
 
     private List<String> sliceSourceIntoTriples() {
-        return sliceStringBy(source, 3);
+        List<String> result = sliceStringBy(source, 3);
+        return result;
     }
 
     private List<String> sliceStringBy(String string, int size) {
@@ -73,18 +74,21 @@ public class TripleSequenceFactory {
         int startOfRange = 0;
         int endOfRange = sourceLength / size;
         if (endOfRange * size < sourceLength) endOfRange += 1;
-        IntStream.range(startOfRange, endOfRange)
-                 .forEach(pos -> {
-                     int start = pos * size;
-                     int end = start + size;
-                     if (end > string.length()) end = string.length();
-                     result.add(string.substring(start, end));
-                 });
+        int difference = sourceLength % size;
+        int offset = size - difference;
+        IntStream.range(startOfRange, endOfRange).forEach(pos -> {
+            int start = pos * size;
+            if (difference > 0 && pos > 0) start -= offset;
+            int end = start + size;
+            if (difference > 0 && pos == 0) end -= offset;
+            if (end > sourceLength) end = sourceLength;
+            result.add(string.substring(start, end));
+        });
         return result;
     }
 
     private List<Triple> getTriplesFromSource() {
-        List<Triple> result = sliceSourceIntoTriples().parallelStream().map(s -> {
+        List<Triple> result = sliceSourceIntoTriples().stream().map(s -> {
             tripleFactory.setSource(s);
             return tripleFactory.createTriple();
         }).collect(Collectors.toList());

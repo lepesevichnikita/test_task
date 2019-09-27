@@ -54,7 +54,7 @@ public class TripleAsWordsRepresenter {
 
     private List<String> getCorrectFormOfDigits() {
         List<String> result = triple.getDigits()
-                                    .parallelStream()
+                                    .stream()
                                     .map(d -> digitsGenderFormsBuilder.withDigit(d)
                                                                       .withGender(triple.getGender())
                                                                       .getResult())
