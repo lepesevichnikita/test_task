@@ -28,15 +28,17 @@ public class TripleFactory {
         assert (tripleBuilder != null);
         tripleBuilder.reset();
         if (!isEmptyNumber()) {
-            if (isZeroNumber()) { addZeroToTripleBuilder(); }
+            if (isZeroTriple()) { addZeroToTripleBuilder(); }
             else {
-                for (int i = 0; i < sourceLength; i++) {
+                for (int i = sourceLength - 1; i > -1; i--) {
                     char currentChar = source.charAt(i);
                     if (isTeens(i, currentChar)) {
                         addTeensToTripleBuilder();
                         break;
                     }
-                    else { addDigitsToBuilderByPositionInTripleAndSymbol(currentChar, i); }
+                    else if (!isZeroSymbolAtZeroPosition(i, currentChar)) {
+                        addDigitsToBuilderByPositionInTripleAndSymbol(currentChar, i);
+                    }
                 }
             }
         }
@@ -44,13 +46,18 @@ public class TripleFactory {
         return result;
     }
 
-    public String getSource() {
-        return source;
+    private boolean hasTeens() {
+        boolean result = source.length() > 1 && isTeens(1, source.charAt(1));
+        return result;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    private boolean isZeroSymbolAtZeroPosition(int i, char currentChar) {
+        return currentChar == '0' && i == 0;
     }
+
+    public String getSource()            { return source; }
+
+    public void setSource(String source) { this.source = new StringBuilder(source).reverse().toString(); }
 
     public void setDigitsRepository(DigitsRepository digitsRepository) {
         this.digitsRepository = digitsRepository;
@@ -72,8 +79,8 @@ public class TripleFactory {
 
 
     private void addTeensToTripleBuilder() {
-        int sourceLength = source.length();
-        addDigitsToBuilderByPositionInTripleAndSymbol(source.substring(sourceLength - 2, sourceLength), 1);
+        String symbol = new StringBuilder(source.substring(0, 2)).reverse().toString();
+        addDigitsToBuilderByPositionInTripleAndSymbol(symbol, 1);
     }
 
     private boolean isEmptyNumber() {
@@ -82,7 +89,7 @@ public class TripleFactory {
         return result;
     }
 
-    private boolean isZeroNumber() {
+    private boolean isZeroTriple() {
         boolean result = source.equals("0");
         return result;
     }
@@ -91,7 +98,7 @@ public class TripleFactory {
         int sourceLength = source.length();
         boolean result = symbol == '1';
         result &= sourceLength > 1;
-        result &= pos == sourceLength - 2;
+        result &= pos == 1;
         return result;
     }
 
