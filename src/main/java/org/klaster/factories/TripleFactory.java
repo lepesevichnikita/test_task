@@ -1,9 +1,9 @@
 package org.klaster.factories;
 
-import org.klaster.builders.TripleBuilder;
+import org.klaster.interfaces.DigitsRepository;
+import org.klaster.interfaces.TripleBuilder;
 import org.klaster.models.Digit;
 import org.klaster.models.Triple;
-import org.klaster.services.DigitsRepository;
 
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/26/19
@@ -14,11 +14,11 @@ public class TripleFactory {
     private DigitsRepository digitsRepository;
     private String           source;
 
-    public TripleBuilder getTripleBuilder() {
+    public TripleBuilder getDefaultTripleBuilder() {
         return tripleBuilder;
     }
 
-    public void setTripleBuilder(TripleBuilder tripleBuilder) {
+    public void setDefaultTripleBuilder(TripleBuilder tripleBuilder) {
         this.tripleBuilder = tripleBuilder;
     }
 
@@ -59,7 +59,7 @@ public class TripleFactory {
 
     public void setSource(String source) { this.source = new StringBuilder(source).reverse().toString(); }
 
-    public void setDigitsRepository(DigitsRepository digitsRepository) {
+    public void setDefaultDigitsRepository(DigitsRepository digitsRepository) {
         this.digitsRepository = digitsRepository;
     }
 

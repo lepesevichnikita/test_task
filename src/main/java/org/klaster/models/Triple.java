@@ -10,22 +10,22 @@ public class Triple {
     private List<Digit> digits;
     private NamedOrder  namedOrder;
 
-    public NamedOrder.Gender getGender() {
+    public Declension.Gender getGender() {
         assert (namedOrder != null);
-        NamedOrder.Gender result = namedOrder.getGender();
+        Declension.Gender result = namedOrder.getGender();
         return result;
     }
 
-    public NamedOrder.Case getCase() {
+    public Declension.Case getCase() {
         assert (digits != null);
-        NamedOrder.Case result = NamedOrder.Case.NOMINATIVE;
+        Declension.Case result = Declension.Case.NOMINATIVE;
         if (!digits.isEmpty()) result = digits.get(digits.size() - 1).getCase();
         return result;
     }
 
-    public NamedOrder.Form getForm() {
+    public Declension.Form getForm() {
         assert (digits != null);
-        NamedOrder.Form result = NamedOrder.Form.SINGULAR;
+        Declension.Form result = Declension.Form.SINGULAR;
         if (!digits.isEmpty()) result = digits.get(digits.size() - 1).getForm();
         return result;
     }

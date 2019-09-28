@@ -1,9 +1,9 @@
 package org.klaster.factories;
 
-import org.klaster.builders.TripleSequenceBuilder;
+import org.klaster.interfaces.NamedOrdersRepository;
+import org.klaster.interfaces.TripleSequenceBuilder;
 import org.klaster.models.Triple;
 import org.klaster.models.TripleSequence;
-import org.klaster.services.NamedOrdersRepository;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -34,8 +34,7 @@ public class TripleSequenceFactory {
         assert (tripleFactory != null);
         assert (namedOrdersRepository != null);
         tripleSequenceBuilder.reset();
-        List<Triple> triples = getTriplesFromSource();
-        tripleSequenceBuilder.withTriples(triples);
+        createTriplesFromSource();
         TripleSequence result = tripleSequenceBuilder.getResult();
         return result;
     }
@@ -48,15 +47,15 @@ public class TripleSequenceFactory {
         this.tripleFactory = tripleFactory;
     }
 
-    public NamedOrdersRepository getNamedOrdersRepository() { return namedOrdersRepository; }
+    public NamedOrdersRepository getDefaultNamedOrdersRepository() { return namedOrdersRepository; }
 
-    public void setNamedOrdersRepository(NamedOrdersRepository namedOrdersRepository) {
+    public void setDefaultNamedOrdersRepository(NamedOrdersRepository namedOrdersRepository) {
         this.namedOrdersRepository = namedOrdersRepository;
     }
 
-    public TripleSequenceBuilder getTripleSequenceBuilder() { return tripleSequenceBuilder; }
+    public TripleSequenceBuilder getDefaultTripleSequenceBuilder() { return tripleSequenceBuilder; }
 
-    public void setTripleSequenceBuilder(TripleSequenceBuilder tripleSequenceBuilder) {
+    public void setDefaultTripleSequenceBuilder(TripleSequenceBuilder tripleSequenceBuilder) {
         this.tripleSequenceBuilder = tripleSequenceBuilder;
     }
 
@@ -84,7 +83,7 @@ public class TripleSequenceFactory {
         return result;
     }
 
-    private List<Triple> getTriplesFromSource() {
+    private void createTriplesFromSource() {
         List<Triple> result = sliceSourceIntoTriples().stream().map(s -> {
             tripleFactory.setSource(s);
             return tripleFactory.createTriple();
@@ -100,6 +99,6 @@ public class TripleSequenceFactory {
         if (!result.stream().allMatch(triple -> triple.isZero())) {
             result.removeIf(triple -> triple.isZero() && resultSize > 1);
         }
-        return result;
+        tripleSequenceBuilder.withTriples(result);
     }
 }

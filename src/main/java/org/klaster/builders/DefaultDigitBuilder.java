@@ -1,54 +1,63 @@
 package org.klaster.builders;
 
+import org.klaster.interfaces.DigitBuilder;
+import org.klaster.models.Declension;
 import org.klaster.models.Digit;
-import org.klaster.models.NamedOrder;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class DigitBuilder {
+public class DefaultDigitBuilder implements DigitBuilder {
     Digit result;
 
-    public DigitBuilder() {
+    public DefaultDigitBuilder() {
         reset();
     }
 
-    public DigitBuilder withGenders(Map<NamedOrder.Gender, String> genders) {
+    @Override
+    public DigitBuilder withGenders(Map<Declension.Gender, String> genders) {
         result.setGenders(genders);
         return this;
     }
 
-    public DigitBuilder withCase(NamedOrder.Case aCase) {
+    @Override
+    public DigitBuilder withCase(Declension.Case aCase) {
         result.setCase(aCase);
         return this;
     }
 
-    public DigitBuilder withForm(NamedOrder.Form form) {
+    @Override
+    public DigitBuilder withForm(Declension.Form form) {
         result.setForm(form);
         return this;
     }
 
+    @Override
     public DigitBuilder withSymbol(String symbol) {
         result.setSymbol(symbol);
         return this;
     }
 
+    @Override
     public DigitBuilder withPositionInTriple(int positionInTriple) {
         result.setPositionInTriple(positionInTriple);
         return this;
     }
 
+    @Override
     public Digit getResult() {
         return result;
     }
 
-    public Digit getResult(Map<NamedOrder.Gender, String> genders, NamedOrder.Case aCase,
-                           NamedOrder.Form form, String symbol) {
+    @Override
+    public Digit getResult(Map<Declension.Gender, String> genders, Declension.Case aCase,
+                           Declension.Form form, String symbol) {
         return withGenders(genders).withCase(aCase).withForm(form).withSymbol(symbol).getResult();
     }
 
+    @Override
     public void reset() {
         result = new Digit();
-        withGenders(new HashMap<>()).withForm(NamedOrder.Form.PLURAL).withSymbol("").withCase(NamedOrder.Case.GENITIVE);
+        withGenders(new HashMap<>()).withForm(Declension.Form.PLURAL).withSymbol("").withCase(Declension.Case.GENITIVE);
     }
 }

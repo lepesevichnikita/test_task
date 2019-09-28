@@ -7,31 +7,35 @@ import java.util.Map;
  * @project testtask
  */
 public class Digit {
-    private Map<NamedOrder.Gender, String> genders;
-    private NamedOrder.Case                aCase;
-    private NamedOrder.Form                form;
+    private Map<Declension.Gender, String> genders;
+    private Declension.Case                aCase;
+    private Declension.Form                form;
     private String                         symbol;
     private int                            positionInTriple;
 
-    public String getSymbol()                             { return symbol; }
+    public String getSymbol()                                        { return symbol; }
 
-    public void setSymbol(String symbol)                  { this.symbol = symbol; }
+    public void setSymbol(String symbol)                             { this.symbol = symbol; }
 
-    public NamedOrder.Form getForm()                      { return form; }
+    public Declension.Form getForm()                                 { return form == null ? getDefaulForm() : form; }
 
-    public void setForm(NamedOrder.Form form)             { this.form = form; }
+    public void setForm(Declension.Form form)                        { this.form = form; }
 
-    public NamedOrder.Case getCase()                      { return aCase; }
+    public Declension.Case getCase()                                 { return aCase == null ? getDefaulCase() : aCase; }
 
-    public void setCase(NamedOrder.Case aCase)            { this.aCase = aCase; }
+    public void setCase(Declension.Case aCase)                       { this.aCase = aCase; }
 
-    public int getPositionInTriple()                      { return positionInTriple; }
+    public int getPositionInTriple()                                 { return positionInTriple; }
 
-    public void setPositionInTriple(int positionInTriple) { this.positionInTriple = positionInTriple; }
+    public void setPositionInTriple(int positionInTriple)            { this.positionInTriple = positionInTriple; }
 
-    public void setGenderForm(NamedOrder.Gender gender, String form) { genders.put(gender, form); }
+    public void setGenderForm(Declension.Gender gender, String form) { genders.put(gender, form); }
 
-    public String getGenderForm(NamedOrder.Gender gender) {
+    public Declension.Case getDefaulCase()                           { return Declension.Case.GENITIVE; }
+
+    public Declension.Form getDefaulForm()                           { return Declension.Form.PLURAL; }
+
+    public String getGenderForm(Declension.Gender gender) {
         String result = genders.get(gender);
         if (result == null) {
             result = "";
@@ -40,7 +44,7 @@ public class Digit {
         return result;
     }
 
-    public Map<NamedOrder.Gender, String> getGenders()               { return this.genders; }
+    public Map<Declension.Gender, String> getGenders()             { return this.genders; }
 
-    public void setGenders(Map<NamedOrder.Gender, String> genders)   { this.genders = genders; }
+    public void setGenders(Map<Declension.Gender, String> genders) { this.genders = genders; }
 }

@@ -1,6 +1,6 @@
 package org.klaster.builders;
 
-import org.klaster.models.NamedOrder;
+import org.klaster.models.Declension;
 import org.klaster.models.Suffix;
 
 import java.util.LinkedList;
@@ -11,36 +11,36 @@ import java.util.List;
  * @project testtask
  */
 public class NamedOrdersSuffixesBuilder {
-    private NamedOrder.Gender currentGender;
-    private NamedOrder.Form   currentForm;
-    private NamedOrder.Case   currentCase;
+    private Declension.Gender currentGender;
+    private Declension.Form   currentForm;
+    private Declension.Case   currentCase;
 
     private List<Suffix> suffixes = new LinkedList<Suffix>() {{
-        add(new Suffix(NamedOrder.Gender.MASCULINE, NamedOrder.Form.SINGULAR, NamedOrder.Case.NOMINATIVE, ""));
-        add(new Suffix(NamedOrder.Gender.MASCULINE, NamedOrder.Form.SINGULAR, NamedOrder.Case.GENITIVE, "а"));
-        add(new Suffix(NamedOrder.Gender.MASCULINE, NamedOrder.Form.PLURAL, NamedOrder.Case.NOMINATIVE, "ы"));
-        add(new Suffix(NamedOrder.Gender.MASCULINE, NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE, "ов"));
-        add(new Suffix(NamedOrder.Gender.FEMININE, NamedOrder.Form.SINGULAR, NamedOrder.Case.NOMINATIVE, "а"));
-        add(new Suffix(NamedOrder.Gender.FEMININE, NamedOrder.Form.SINGULAR, NamedOrder.Case.GENITIVE, "и"));
-        add(new Suffix(NamedOrder.Gender.FEMININE, NamedOrder.Form.PLURAL, NamedOrder.Case.NOMINATIVE, "и"));
-        add(new Suffix(NamedOrder.Gender.FEMININE, NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE, ""));
+        add(new Suffix(Declension.Gender.MASCULINE, Declension.Form.SINGULAR, Declension.Case.NOMINATIVE, ""));
+        add(new Suffix(Declension.Gender.MASCULINE, Declension.Form.SINGULAR, Declension.Case.GENITIVE, "а"));
+        add(new Suffix(Declension.Gender.MASCULINE, Declension.Form.PLURAL, Declension.Case.NOMINATIVE, "ы"));
+        add(new Suffix(Declension.Gender.MASCULINE, Declension.Form.PLURAL, Declension.Case.GENITIVE, "ов"));
+        add(new Suffix(Declension.Gender.FEMININE, Declension.Form.SINGULAR, Declension.Case.NOMINATIVE, "а"));
+        add(new Suffix(Declension.Gender.FEMININE, Declension.Form.SINGULAR, Declension.Case.GENITIVE, "и"));
+        add(new Suffix(Declension.Gender.FEMININE, Declension.Form.PLURAL, Declension.Case.NOMINATIVE, "и"));
+        add(new Suffix(Declension.Gender.FEMININE, Declension.Form.PLURAL, Declension.Case.GENITIVE, ""));
     }};
 
     public NamedOrdersSuffixesBuilder() {
         reset();
     }
 
-    public NamedOrdersSuffixesBuilder withGender(NamedOrder.Gender currentGender) {
+    public NamedOrdersSuffixesBuilder withGender(Declension.Gender currentGender) {
         this.currentGender = currentGender;
         return this;
     }
 
-    public NamedOrdersSuffixesBuilder withForm(NamedOrder.Form currentForm) {
+    public NamedOrdersSuffixesBuilder withForm(Declension.Form currentForm) {
         this.currentForm = currentForm;
         return this;
     }
 
-    public NamedOrdersSuffixesBuilder withCase(NamedOrder.Case currentCase) {
+    public NamedOrdersSuffixesBuilder withCase(Declension.Case currentCase) {
         this.currentCase = currentCase;
         return this;
     }
@@ -57,9 +57,9 @@ public class NamedOrdersSuffixesBuilder {
     }
 
     public void reset() {
-        this.currentForm   = NamedOrder.Form.SINGULAR;
-        this.currentGender = NamedOrder.Gender.MASCULINE;
-        this.currentCase   = NamedOrder.Case.NOMINATIVE;
+        this.currentForm   = Declension.Form.SINGULAR;
+        this.currentGender = Declension.Gender.MASCULINE;
+        this.currentCase   = Declension.Case.NOMINATIVE;
     }
 
 }
