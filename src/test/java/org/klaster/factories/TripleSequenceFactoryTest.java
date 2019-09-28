@@ -15,6 +15,8 @@ import org.klaster.models.TripleSequence;
 
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/26/19
  * @project testtask
