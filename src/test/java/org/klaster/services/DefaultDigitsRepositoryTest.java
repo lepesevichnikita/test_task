@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.klaster.factories.DefaultDigitsRepositoryFactory;
+import org.klaster.interfaces.DigitsRepository;
 import org.klaster.models.Digit;
 import org.klaster.models.NamedOrder;
 import org.klaster.models.Declension;
@@ -20,12 +21,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @project testtask
  */
 
-public class DefaultsDigitsRepositoryTest {
-    static DefaultsDigitsRepository defaultsDigitsRepository;
+public class DefaultDigitsRepositoryTest {
+    static DigitsRepository digitsRepository;
 
     @BeforeAll
     static void init() {
-        defaultsDigitsRepository = new DefaultDigitsRepositoryFactory().loadRepository();
+        digitsRepository = new DefaultDigitsRepositoryFactory().loadRepository();
     }
 
     private static Stream<Arguments> digitsWithFeminineAndNeuterFormsUnderTen() {
@@ -78,22 +79,22 @@ public class DefaultsDigitsRepositoryTest {
 
     private static Stream<Arguments> hundreds() {
         return Stream.of(
-                Arguments.of("1", 2, "сто", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
-                Arguments.of("2", 2, "двести", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
-                Arguments.of("3", 2, "триста", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
-                Arguments.of("4", 2, "четыреста", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
-                Arguments.of("5", 2, "пятьсот", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
-                Arguments.of("6", 2, "шестьсот", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
-                Arguments.of("7", 2, "семьсот", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
-                Arguments.of("8", 2, "восемьсот", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE),
-                Arguments.of("9", 2, "девятьсот", "", NamedOrder.Form.PLURAL, NamedOrder.Case.GENITIVE)
+                Arguments.of("1", 2, "сто", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
+                Arguments.of("2", 2, "двести", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
+                Arguments.of("3", 2, "триста", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
+                Arguments.of("4", 2, "четыреста", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
+                Arguments.of("5", 2, "пятьсот", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
+                Arguments.of("6", 2, "шестьсот", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
+                Arguments.of("7", 2, "семьсот", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
+                Arguments.of("8", 2, "восемьсот", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
+                Arguments.of("9", 2, "девятьсот", "", Declension.Form.PLURAL, Declension.Case.GENITIVE)
         );
     }
 
     @Test
     @DisplayName("Has 38 digits")
     void hasThirtyEightDigits() {
-        assertEquals(37, defaultsDigitsRepository.getItems().size());
+        assertEquals(37, digitsRepository.getItems().size());
     }
 
     @ParameterizedTest
@@ -109,7 +110,7 @@ public class DefaultsDigitsRepositoryTest {
                                              String expectedFeminineForm,
                                              NamedOrder.Form expectedForm,
                                              NamedOrder.Case expectedCase) {
-        Digit actualDigit = defaultsDigitsRepository.getDigitByPositionInTripleAndSymbol(symbol, positionInTriple);
+        Digit actualDigit = digitsRepository.getDigitByPositionInTripleAndSymbol(symbol, positionInTriple);
         assertEquals(expectedMasculineForm, actualDigit.getGenderForm(NamedOrder.Gender.MASCULINE));
         assertEquals(expectedFeminineForm, actualDigit.getGenderForm(NamedOrder.Gender.FEMININE));
         assertEquals(expectedForm, actualDigit.getForm());
