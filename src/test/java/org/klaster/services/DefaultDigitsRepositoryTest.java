@@ -108,11 +108,11 @@ public class DefaultDigitsRepositoryTest {
                   })
     void getsDigitByPositionInTripleAndDigit(String symbol, int positionInTriple, String expectedMasculineForm,
                                              String expectedFeminineForm,
-                                             NamedOrder.Form expectedForm,
-                                             NamedOrder.Case expectedCase) {
+                                             Declension.Form expectedForm,
+                                             Declension.Case expectedCase) {
         Digit actualDigit = digitsRepository.getDigitByPositionInTripleAndSymbol(symbol, positionInTriple);
-        assertEquals(expectedMasculineForm, actualDigit.getGenderForm(NamedOrder.Gender.MASCULINE));
-        assertEquals(expectedFeminineForm, actualDigit.getGenderForm(NamedOrder.Gender.FEMININE));
+        assertEquals(expectedMasculineForm, actualDigit.getGenderForm(Declension.Gender.MASCULINE));
+        assertEquals(expectedFeminineForm, actualDigit.getGenderForm(Declension.Gender.FEMININE));
         assertEquals(expectedForm, actualDigit.getForm());
         assertEquals(expectedCase, actualDigit.getCase());
     }
