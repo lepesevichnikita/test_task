@@ -38,11 +38,11 @@ public class TripleSequenceFactoryTest {
         tripleSequenceBuilder = new DefaultTripleSequenceBuilder();
         tripleSequenceFactory = new TripleSequenceFactory();
 
-        tripleFactory.setDefaultDigitsRepository(digitsRepository);
-        tripleFactory.setDefaultTripleBuilder(tripleBuilder);
-        tripleSequenceFactory.setDefaultNamedOrdersRepository(namedOrdersRepository);
+        tripleFactory.setDigitsRepository(digitsRepository);
+        tripleFactory.setTripleBuilder(tripleBuilder);
+        tripleSequenceFactory.setNamedOrdersRepository(namedOrdersRepository);
         tripleSequenceFactory.setTripleFactory(tripleFactory);
-        tripleSequenceFactory.setDefaultTripleSequenceBuilder(tripleSequenceBuilder);
+        tripleSequenceFactory.setTripleSequenceBuilder(tripleSequenceBuilder);
     }
 
     static Stream<Arguments> sequences() {

@@ -5,18 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.klaster.builders.DefaultTripleBuilder;
-import org.klaster.builders.DefaultTripleSequenceBuilder;
-import org.klaster.builders.DigitsGenderFormsBuilder;
-import org.klaster.builders.NamedOrdersFormsBuilder;
-import org.klaster.factories.DefaultDigitsRepositoryFactory;
-import org.klaster.factories.DefaultNamedOrdersRepositoryFactory;
-import org.klaster.factories.TripleFactory;
+import org.klaster.builders.*;
 import org.klaster.factories.TripleSequenceFactory;
-import org.klaster.interfaces.DigitsRepository;
-import org.klaster.interfaces.NamedOrdersRepository;
-import org.klaster.interfaces.TripleBuilder;
-import org.klaster.interfaces.TripleSequenceBuilder;
 import org.klaster.models.TripleSequence;
 
 import java.util.stream.Stream;
@@ -28,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @project testtask
  */
 public class TriplesSequenceAsWordsRepresenterTest {
-    static private TriplesSequenceAsWordsRepresenter triplesSequenceAsWordsRepresenter;
+    static private TriplesSequenceAsWordsRepresenter tripleSequenceAsWordsRepresenter;
     static private TripleSequenceFactory             tripleSequenceFactory;
 
     @BeforeAll
@@ -38,29 +28,11 @@ public class TriplesSequenceAsWordsRepresenterTest {
     }
 
     static void initTripleSequenceAsWordsRepresenter() {
-        DigitsGenderFormsBuilder digitsGenderFormsBuilder = new DigitsGenderFormsBuilder();
-        NamedOrdersFormsBuilder namedOrdersFormsBuilder = new NamedOrdersFormsBuilder();
-        TripleAsWordsRepresenter tripleAsWordsRepresenter = new TripleAsWordsRepresenter();
-        triplesSequenceAsWordsRepresenter = new TriplesSequenceAsWordsRepresenter();
-
-        tripleAsWordsRepresenter.setDigitsGenderFormsBuilder(digitsGenderFormsBuilder);
-        tripleAsWordsRepresenter.setNamedOrdersFormsBuilder(namedOrdersFormsBuilder);
-        triplesSequenceAsWordsRepresenter.setTripleAsWordsRepresenter(tripleAsWordsRepresenter);
+        tripleSequenceAsWordsRepresenter = new DefaultTripleSequenceAsWordsRepresenterBuilder().getResult();
     }
 
     static void initTripleSequenceFactory() {
-        DigitsRepository digitsRepository = new DefaultDigitsRepositoryFactory().loadRepository();
-        NamedOrdersRepository namedOrdersRepository = new DefaultNamedOrdersRepositoryFactory().loadRepository();
-        TripleBuilder tripleBuilder = new DefaultTripleBuilder();
-        TripleFactory tripleFactory = new TripleFactory();
-        TripleSequenceBuilder tripleSequenceBuilder = new DefaultTripleSequenceBuilder();
-        tripleSequenceFactory = new TripleSequenceFactory();
-
-        tripleFactory.setDefaultDigitsRepository(digitsRepository);
-        tripleFactory.setDefaultTripleBuilder(tripleBuilder);
-        tripleSequenceFactory.setDefaultNamedOrdersRepository(namedOrdersRepository);
-        tripleSequenceFactory.setTripleFactory(tripleFactory);
-        tripleSequenceFactory.setDefaultTripleSequenceBuilder(tripleSequenceBuilder);
+        tripleSequenceFactory = new DefaultTripleSequenceFactoryBuilder().getResult();
     }
 
     static Stream<Arguments> tripleSequences() {
@@ -110,8 +82,8 @@ public class TriplesSequenceAsWordsRepresenterTest {
     void wordsRepresentationOfTripleSequence(String numberAsStringOfDigits, String expectedWordsRepresentation) {
         tripleSequenceFactory.setSource(numberAsStringOfDigits);
         TripleSequence tripleSequence = tripleSequenceFactory.createTripleSequence();
-        triplesSequenceAsWordsRepresenter.setTripleSequence(tripleSequence);
-        assertEquals(expectedWordsRepresentation, triplesSequenceAsWordsRepresenter.asString());
+        tripleSequenceAsWordsRepresenter.setTripleSequence(tripleSequence);
+        assertEquals(expectedWordsRepresentation, tripleSequenceAsWordsRepresenter.asString());
     }
 }
 
