@@ -7,6 +7,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.klaster.factories.DefaultNamedOrdersRepositoryFactory;
+import org.klaster.interfaces.NamedOrdersRepository;
+import org.klaster.models.Declension;
 import org.klaster.models.NamedOrder;
 
 import java.util.stream.Stream;
