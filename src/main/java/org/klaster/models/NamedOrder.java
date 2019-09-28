@@ -10,7 +10,7 @@ import java.util.Map;
 public class NamedOrder {
     private Map<Form, Map<Case, String>> forms;
     private Gender                       gender;
-    private int                          namedOrderNumber;
+    private int                          number;
     private String                       root;
 
     public NamedOrder() {
@@ -18,26 +18,26 @@ public class NamedOrder {
         this.forms  = new HashMap<Form, Map<Case, String>>();
     }
 
-    public Gender getGender()                               { return gender; }
+    public Gender getGender()                           { return gender; }
 
-    public void setGender(Gender gender)                    { this.gender = gender; }
-
-
-    public int getNamedOrderNumber()                        { return namedOrderNumber; }
-
-    public void setNamedOrderNumber(int namedOrderNumber)   { this.namedOrderNumber = namedOrderNumber; }
+    public void setGender(Gender gender)                { this.gender = gender; }
 
 
-    public String getSingular(Case wordCase)                { return getSingularCases().get(wordCase); }
+    public int getNumber()                              { return number; }
 
-    public void setSingular(Case wordCase, String word)     { getSingularCases().put(wordCase, word); }
-
-    public String getPlural(Case wordCase)                  {return getPluralCases().get(wordCase);}
-
-    public void setPlural(Case wordCase, String word)       { getPluralCases().put(wordCase, word); }
+    public void setNumber(int number)                   { this.number = number; }
 
 
-    public Map<Case, String> getCasesByForm(Form form)      { return forms.get(form); }
+    public String getSingular(Case wordCase)            { return getSingularCases().get(wordCase); }
+
+    public void setSingular(Case wordCase, String word) { getSingularCases().put(wordCase, word); }
+
+    public String getPlural(Case wordCase)              {return getPluralCases().get(wordCase);}
+
+    public void setPlural(Case wordCase, String word)   { getPluralCases().put(wordCase, word); }
+
+
+    public Map<Case, String> getCasesByForm(Form form)  { return forms.get(form); }
 
     public void setForm(Form form, Map<Case, String> cases) { forms.put(form, cases); }
 

@@ -48,4 +48,14 @@ public class Triple {
     public void setNamedOrder(NamedOrder namedOrder) {
         this.namedOrder = namedOrder;
     }
+
+    public boolean isZero() {
+        boolean result = digits.stream().allMatch(d -> d.getSymbol().equals("0"));
+        return result;
+    }
+
+    public boolean isEmpty() {
+        boolean result = isZero() && namedOrder.getNumber() > 0;
+        return result;
+    }
 }

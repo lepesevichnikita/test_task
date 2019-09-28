@@ -46,9 +46,12 @@ public class TripleAsWordsRepresenter {
         assert (namedOrdersFormsBuilder != null);
         digitsGenderFormsBuilder.reset();
         namedOrdersFormsBuilder.reset();
-        List<String> words = getCorrectFormOfDigits();
-        words.add(getNamedOrderInCorrectForm());
-        String result = String.join(" ", words).trim();
+        String result = "";
+        if (!triple.isEmpty()) {
+            List<String> words = getCorrectFormOfDigits();
+            words.add(getNamedOrderInCorrectForm());
+            result = String.join(" ", words).trim();
+        }
         return result;
     }
 

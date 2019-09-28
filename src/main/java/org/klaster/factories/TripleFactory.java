@@ -85,12 +85,13 @@ public class TripleFactory {
 
     private boolean isEmptyNumber() {
         boolean result = source.isEmpty();
-        result |= source.equals("000") || source.equals("00");
         return result;
     }
 
     private boolean isZeroTriple() {
         boolean result = source.equals("0");
+        result |= source.equals("00");
+        result |= source.equals("000");
         return result;
     }
 

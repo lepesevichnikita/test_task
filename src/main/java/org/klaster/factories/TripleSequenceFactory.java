@@ -35,9 +35,6 @@ public class TripleSequenceFactory {
         assert (namedOrdersRepository != null);
         tripleSequenceBuilder.reset();
         List<Triple> triples = getTriplesFromSource();
-        for (int i = 0; i < triples.size(); i++) {
-            triples.get(i).setNamedOrder(namedOrdersRepository.getByNamedOrderNumber(i));
-        }
         tripleSequenceBuilder.withTriples(triples);
         TripleSequence result = tripleSequenceBuilder.getResult();
         return result;
@@ -92,6 +89,17 @@ public class TripleSequenceFactory {
             tripleFactory.setSource(s);
             return tripleFactory.createTriple();
         }).collect(Collectors.toList());
+        int resultSize = result.size();
+        IntStream.range(0, resultSize)
+                 .forEach(pos -> {
+                     int orderNumber = resultSize - pos - 1;
+                     result.get(pos).setNamedOrder(namedOrdersRepository.getByNumber(orderNumber));
+                 });
+        // if triples don't represent zero remove last triple if it represents zero and there is more han one triple
+        // in sequence
+        if (!result.stream().allMatch(triple -> triple.isZero())) {
+            result.removeIf(triple -> triple.isZero() && resultSize > 1);
+        }
         return result;
     }
 }

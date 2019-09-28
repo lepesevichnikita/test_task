@@ -12,14 +12,15 @@ import java.util.List;
  * @project testtask
  */
 public class NamedOrdersRepository {
-    private List<NamedOrder> namedOrders;
+    private        List<NamedOrder> namedOrders;
+    static private String           dictionaryName = "named_orders.yaml";
 
     public static NamedOrdersRepository loadRepository() {
         Constructor ctr = new Constructor(NamedOrdersRepository.class);
         Yaml yaml = new Yaml(ctr);
         InputStream inputStream = NamedOrdersRepository.class
                 .getClassLoader()
-                .getResourceAsStream("named_orders.yaml");
+                .getResourceAsStream(dictionaryName);
         NamedOrdersRepository result = yaml.load(inputStream);
         return result;
     }
@@ -28,10 +29,10 @@ public class NamedOrdersRepository {
 
     public void setNamedOrders(List<NamedOrder> namedOrders) { this.namedOrders = namedOrders; }
 
-    public NamedOrder getByNamedOrderNumber(int namedOrderNumber) {
+    public NamedOrder getByNumber(int namedOrderNumber) {
         NamedOrder result =
                 namedOrders.parallelStream()
-                           .filter(no -> no.getNamedOrderNumber() == namedOrderNumber)
+                           .filter(no -> no.getNumber() == namedOrderNumber)
                            .findFirst()
                            .orElse(null);
         return result;
