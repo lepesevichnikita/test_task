@@ -10,6 +10,8 @@ import org.klaster.models.Declension;
 
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class NamedOrdersSuffixesBuilderTest {
     private static NamedOrdersSuffixesBuilder namedOrdersSuffixesBuilder;
 

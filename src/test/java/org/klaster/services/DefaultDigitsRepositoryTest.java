@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.klaster.factories.DefaultDigitsRepositoryFactory;
 import org.klaster.interfaces.DigitsRepository;
-import org.klaster.models.Declension;
 import org.klaster.models.Digit;
 import org.klaster.models.Declension;
 
@@ -87,7 +86,8 @@ public class DefaultDigitsRepositoryTest {
                 Arguments.of("6", 2, "шестьсот", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
                 Arguments.of("7", 2, "семьсот", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
                 Arguments.of("8", 2, "восемьсот", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
-                Arguments.of("9", 2, "девятьсот", "", Declension.Form.PLURAL, Declension.Case.GENITIVE));
+                Arguments.of("9", 2, "девятьсот", "", Declension.Form.PLURAL, Declension.Case.GENITIVE)
+        );
     }
 
     @Test
