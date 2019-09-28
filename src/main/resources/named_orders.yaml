@@ -1,0 +1,78 @@
+items:
+  - number: 0
+    root: ""
+  - number: 1
+    gender: FEMININE
+    root: "тысяч"
+  - number: 2
+    root: "миллион"
+  - number: 3
+    root: "миллиард"
+  - number: 4
+    root: "триллион"
+  - number: 5
+    root: "квадриллион"
+  - number: 6
+    root: "квинтиллион"
+  - number: 7
+    root: "секстиллион"
+  - number: 8
+    root: "септиллион"
+  - number: 9
+    root: "октиллион"
+  - number: 10
+    root: "нониллион"
+  - number: 11
+    root: "дециллион"
+  - number: 12
+    root: "ундециллион"
+  - number: 13
+    root: "додециллион"
+  - number: 14
+    root: "тредециллион"
+  - number: 15
+    root: "кваттуордециллион"
+  - number: 16
+    root: "квиндециллион"
+  - number: 17
+    root: "сексдециллион"
+  - number: 18
+    root: "септемдециллион"
+  - number: 19
+    root: "октодециллион"
+  - number: 20
+    root: "новемдециллион"
+  - number: 21
+    root: "вигинтиллион"
+  - number: 22
+    root: "унвигинтиллион"
+  - number: 23
+    root: "дуовигинтиллион"
+  - number: 24
+    root: "тревигинтиллион"
+  - number: 25
+    root: "кватуорвигинтиллион"
+  - number: 26
+    root: "квинвигинтиллион"
+  - number: 27
+    root: "сексвигинтиллион"
+  - number: 28
+    root: "септенвигинтиллион"
+  - number: 29
+    root: "октовигинтиллион"
+  - number: 30
+    root: "новемвигинтиллион"
+  - number: 31
+    root: "тригинтиллион"
+  - number: 32
+    root: "унтригинтиллион"
+  - number: 33
+    root: "дуотригинтиллион"
+  - number: 34
+    root: "третригинтиллион"
+  - number: 35
+    root: "кватортригинтиллион"
+  - number: 36
+    root: "квинтригинтиллион"
+  - number: 37
+    root: "секстригинтиллион"

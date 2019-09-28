@@ -1,0 +1,193 @@
+items:
+  -
+    positionInTriple: 0
+    symbol: "0"
+    genders:
+      MASCULINE: "ноль"
+  -
+    positionInTriple: 0
+    symbol: "1"
+    genders:
+      MASCULINE: "один"
+      FEMININE: "одна"
+    form: SINGULAR
+    case: NOMINATIVE
+  -
+    positionInTriple: 0
+    symbol: "2"
+    genders:
+      MASCULINE: "два"
+      FEMININE: "две"
+    form: SINGULAR
+  -
+    positionInTriple: 0
+    symbol: "3"
+    genders:
+      MASCULINE: "три"
+    form: SINGULAR
+  -
+    positionInTriple: 0
+    symbol: "4"
+    genders:
+      MASCULINE: "четыре"
+    form: SINGULAR
+  -
+    positionInTriple: 0
+    symbol: "5"
+    genders:
+      MASCULINE: "пять"
+  -
+    positionInTriple: 0
+    symbol: "6"
+    genders:
+      MASCULINE: "шесть"
+  -
+    positionInTriple: 0
+    symbol: "7"
+    genders:
+      MASCULINE: "семь"
+  -
+    positionInTriple: 0
+    symbol: "8"
+    genders:
+      MASCULINE: "восемь"
+  -
+    positionInTriple: 0
+    symbol: "9"
+    genders:
+      MASCULINE: "девять"
+  -
+    positionInTriple: 1
+    symbol: "10"
+    genders:
+      MASCULINE: "десять"
+  -
+    positionInTriple: 1
+    symbol: "11"
+    genders:
+      MASCULINE: "одиннадцать"
+  -
+    positionInTriple: 1
+    symbol: "12"
+    genders:
+      MASCULINE: "двенадцать"
+  -
+    positionInTriple: 1
+    symbol: "13"
+    genders:
+      MASCULINE: "тринадцать"
+  -
+    positionInTriple: 1
+    symbol: "14"
+    genders:
+      MASCULINE: "четырнадцать"
+  -
+    positionInTriple: 1
+    symbol: "15"
+    genders:
+      MASCULINE: "пятнадцать"
+  -
+    positionInTriple: 1
+    symbol: "16"
+    genders:
+      MASCULINE: "шестнадцать"
+  -
+    positionInTriple: 1
+    symbol: "17"
+    genders:
+      MASCULINE: "семнадцать"
+  -
+    positionInTriple: 1
+    symbol: "18"
+    genders:
+      MASCULINE: "восемнадцать"
+  -
+    positionInTriple: 1
+    symbol: "19"
+    genders:
+      MASCULINE: "девятнадцать"
+  -
+    positionInTriple: 1
+    symbol: "2"
+    genders:
+      MASCULINE: "двадцать"
+  -
+    positionInTriple: 1
+    symbol: "3"
+    genders:
+      MASCULINE: "тридцать"
+  -
+    positionInTriple: 1
+    symbol: "4"
+    genders:
+      MASCULINE: "сорок"
+  -
+    positionInTriple: 1
+    symbol: "5"
+    genders:
+      MASCULINE: "пятьдесят"
+  -
+    positionInTriple: 1
+    symbol: "6"
+    genders:
+      MASCULINE: "шестьдесят"
+  -
+    positionInTriple: 1
+    symbol: "7"
+    genders:
+      MASCULINE: "семьдесят"
+  -
+    positionInTriple: 1
+    symbol: "8"
+    genders:
+      MASCULINE: "восемьдесят"
+  -
+    positionInTriple: 1
+    symbol: "9"
+    genders:
+      MASCULINE: "девяносто"
+  -
+    positionInTriple: 2
+    symbol: "1"
+    genders:
+      MASCULINE: "сто"
+  -
+    positionInTriple: 2
+    symbol: "2"
+    genders:
+      MASCULINE: "двести"
+  -
+    positionInTriple: 2
+    symbol: "3"
+    genders:
+      MASCULINE: "триста"
+  -
+    positionInTriple: 2
+    symbol: "4"
+    genders:
+      MASCULINE: "четыреста"
+  -
+    positionInTriple: 2
+    symbol: "5"
+    genders:
+      MASCULINE: "пятьсот"
+  -
+    positionInTriple: 2
+    symbol: "6"
+    genders:
+      MASCULINE: "шестьсот"
+  -
+    positionInTriple: 2
+    symbol: "7"
+    genders:
+      MASCULINE: "семьсот"
+  -
+    positionInTriple: 2
+    symbol: "8"
+    genders:
+      MASCULINE: "восемьсот"
+  -
+    positionInTriple: 2
+    symbol: "9"
+    genders:
+      MASCULINE: "девятьсот"
