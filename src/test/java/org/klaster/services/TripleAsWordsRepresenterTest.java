@@ -13,7 +13,7 @@ import org.klaster.models.Triple;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.AssertEquals.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/27/19
