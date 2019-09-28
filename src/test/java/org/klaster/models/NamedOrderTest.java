@@ -8,8 +8,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/24/19
  * @project testtask
@@ -20,8 +18,8 @@ public class NamedOrderTest {
     private static Stream<Arguments> firstTwoOrders() {
 
         return Stream.of(
-                Arguments.of(0, "", "", "", "", "", NamedOrder.Gender.MASCULINE),
-                Arguments.of(1, "тысяч", "тысяча", "тысячи", "тысячи", "тысяч", NamedOrder.Gender.FEMININE)
+                Arguments.of(0, "", "", "", "", "", Declension.Gender.MASCULINE),
+                Arguments.of(1, "тысяч", "тысяча", "тысячи", "тысячи", "тысяч", Declension.Gender.FEMININE)
         );
     }
 
@@ -47,16 +45,16 @@ public class NamedOrderTest {
                      String expectedPluralNominative, String expectedPluralGenitive) {
         namedOrder.setRoot(root);
         namedOrder.setNumber(namedOrderNumber);
-        namedOrder.setSingular(NamedOrder.Case.NOMINATIVE, expectedSingularNominative);
-        namedOrder.setSingular(NamedOrder.Case.GENITIVE, expectedSingularGenitive);
-        namedOrder.setPlural(NamedOrder.Case.NOMINATIVE, expectedPluralNominative);
-        namedOrder.setPlural(NamedOrder.Case.GENITIVE, expectedPluralGenitive);
+        namedOrder.setSingular(Declension.Case.NOMINATIVE, expectedSingularNominative);
+        namedOrder.setSingular(Declension.Case.GENITIVE, expectedSingularGenitive);
+        namedOrder.setPlural(Declension.Case.NOMINATIVE, expectedPluralNominative);
+        namedOrder.setPlural(Declension.Case.GENITIVE, expectedPluralGenitive);
 
-        assertEquals(NamedOrder.Gender.MASCULINE, namedOrder.getGender());
-        assertEquals(expectedSingularNominative, namedOrder.getSingular(NamedOrder.Case.NOMINATIVE));
-        assertEquals(expectedSingularGenitive, namedOrder.getSingular(NamedOrder.Case.GENITIVE));
-        assertEquals(expectedPluralNominative, namedOrder.getPlural(NamedOrder.Case.NOMINATIVE));
-        assertEquals(expectedPluralGenitive, namedOrder.getPlural(NamedOrder.Case.GENITIVE));
+        assertEquals(Declension.Gender.MASCULINE, namedOrder.getGender());
+        assertEquals(expectedSingularNominative, namedOrder.getSingular(Declension.Case.NOMINATIVE));
+        assertEquals(expectedSingularGenitive, namedOrder.getSingular(Declension.Case.GENITIVE));
+        assertEquals(expectedPluralNominative, namedOrder.getPlural(Declension.Case.NOMINATIVE));
+        assertEquals(expectedPluralGenitive, namedOrder.getPlural(Declension.Case.GENITIVE));
     }
 
     @ParameterizedTest
@@ -64,19 +62,19 @@ public class NamedOrderTest {
     @MethodSource("firstTwoOrders")
     void namedOrders(int expectedNumber, String root, String expectedSingularNominative,
                      String expectedSingularGenitive,
-                     String expectedPluralNominative, String expectedPluralGenitive, NamedOrder.Gender expectedGender) {
+                     String expectedPluralNominative, String expectedPluralGenitive, Declension.Gender expectedGender) {
         namedOrder.setRoot(root);
         namedOrder.setNumber(expectedNumber);
-        namedOrder.setSingular(NamedOrder.Case.NOMINATIVE, expectedSingularNominative);
-        namedOrder.setSingular(NamedOrder.Case.GENITIVE, expectedSingularGenitive);
-        namedOrder.setPlural(NamedOrder.Case.NOMINATIVE, expectedPluralNominative);
-        namedOrder.setPlural(NamedOrder.Case.GENITIVE, expectedPluralGenitive);
+        namedOrder.setSingular(Declension.Case.NOMINATIVE, expectedSingularNominative);
+        namedOrder.setSingular(Declension.Case.GENITIVE, expectedSingularGenitive);
+        namedOrder.setPlural(Declension.Case.NOMINATIVE, expectedPluralNominative);
+        namedOrder.setPlural(Declension.Case.GENITIVE, expectedPluralGenitive);
         namedOrder.setGender(expectedGender);
 
         assertEquals(expectedGender, namedOrder.getGender());
-        assertEquals(expectedSingularNominative, namedOrder.getSingular(NamedOrder.Case.NOMINATIVE));
-        assertEquals(expectedSingularGenitive, namedOrder.getSingular(NamedOrder.Case.GENITIVE));
-        assertEquals(expectedPluralNominative, namedOrder.getPlural(NamedOrder.Case.NOMINATIVE));
-        assertEquals(expectedPluralGenitive, namedOrder.getPlural(NamedOrder.Case.GENITIVE));
+        assertEquals(expectedSingularNominative, namedOrder.getSingular(Declension.Case.NOMINATIVE));
+        assertEquals(expectedSingularGenitive, namedOrder.getSingular(Declension.Case.GENITIVE));
+        assertEquals(expectedPluralNominative, namedOrder.getPlural(Declension.Case.NOMINATIVE));
+        assertEquals(expectedPluralGenitive, namedOrder.getPlural(Declension.Case.GENITIVE));
     }
 }
