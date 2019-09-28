@@ -75,7 +75,7 @@ public class DefaultNamedOrdersRepositoryTest {
     }
 
     @ParameterizedTest
-    @DisplayName("Returns Declension by named order number, with default gender, form and case")
+    @DisplayName("Returns NamedOrder by named order number, with default gender, form and case")
     @MethodSource("namedOrders")
     void namedOrdersByNumber(int namedOrderNumber, NamedOrder.Gender expectedGender, String expectedRoot) {
         NamedOrder namedOrder = namedOrdersRepository.getByNumber(namedOrderNumber);
