@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.klaster.factories.DefaultDigitsRepositoryFactory;
 import org.klaster.models.Digit;
 import org.klaster.models.NamedOrder;
+import org.klaster.models.Declension;
 
 import java.util.stream.Stream;
 
