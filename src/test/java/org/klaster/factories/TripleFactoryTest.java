@@ -31,8 +31,8 @@ public class TripleFactoryTest {
         TripleBuilder tripleBuilder = new DefaultTripleBuilder();
         DigitsRepository digitsRepository = new DefaultDigitsRepositoryFactory().loadRepository();
 
-        tripleFactory.setDefaultTripleBuilder(tripleBuilder);
-        tripleFactory.setDefaultDigitsRepository(digitsRepository);
+        tripleFactory.setTripleBuilder(tripleBuilder);
+        tripleFactory.setDigitsRepository(digitsRepository);
     }
 
     static Stream<Arguments> triplesOfZeroOrder() {

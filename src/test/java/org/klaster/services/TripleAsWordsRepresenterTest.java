@@ -5,15 +5,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.klaster.builders.DefaultTripleBuilder;
-import org.klaster.builders.DigitsGenderFormsBuilder;
-import org.klaster.builders.NamedOrdersFormsBuilder;
-import org.klaster.factories.DefaultDigitsRepositoryFactory;
+import org.klaster.builders.DefaultTripleAsWordsRepresenterBuilder;
+import org.klaster.builders.DefaultTripleFactoryBuilder;
 import org.klaster.factories.DefaultNamedOrdersRepositoryFactory;
 import org.klaster.factories.TripleFactory;
-import org.klaster.interfaces.DigitsRepository;
 import org.klaster.interfaces.NamedOrdersRepository;
-import org.klaster.interfaces.TripleBuilder;
 import org.klaster.models.Triple;
 
 import java.util.stream.Stream;
@@ -37,19 +33,11 @@ public class TripleAsWordsRepresenterTest {
     }
 
     static void initTripleAsWordsRepresenter() {
-        DigitsGenderFormsBuilder digitsGenderFormsBuilder = new DigitsGenderFormsBuilder();
-        NamedOrdersFormsBuilder namedOrdersFormsBuilder = new NamedOrdersFormsBuilder();
-        tripleAsWordsRepresenter = new TripleAsWordsRepresenter();
-        tripleAsWordsRepresenter.setDigitsGenderFormsBuilder(digitsGenderFormsBuilder);
-        tripleAsWordsRepresenter.setNamedOrdersFormsBuilder(namedOrdersFormsBuilder);
+        tripleAsWordsRepresenter = new DefaultTripleAsWordsRepresenterBuilder().getResult();
     }
 
     static void initTripleFactory() {
-        tripleFactory = new TripleFactory();
-        TripleBuilder tripleBuilder = new DefaultTripleBuilder();
-        DigitsRepository digitsRepository = new DefaultDigitsRepositoryFactory().loadRepository();
-        tripleFactory.setDefaultTripleBuilder(tripleBuilder);
-        tripleFactory.setDefaultDigitsRepository(digitsRepository);
+        tripleFactory = new DefaultTripleFactoryBuilder().getResult();
     }
 
     static Stream<Arguments> triples() {
