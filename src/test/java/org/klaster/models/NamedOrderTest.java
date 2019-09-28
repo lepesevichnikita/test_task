@@ -8,6 +8,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.AssertEquals.assertEquals;
+
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/24/19
  * @project testtask

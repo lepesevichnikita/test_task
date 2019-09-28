@@ -13,6 +13,8 @@ import org.klaster.services.NamedOrdersRepository;
 
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.AssertEquals.assertEquals;
+
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/26/19
  * @project testtask
