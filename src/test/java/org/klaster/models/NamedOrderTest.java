@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.AssertEquals.assertEquals;
 
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/24/19
@@ -46,7 +46,7 @@ public class NamedOrderTest {
                      String expectedSingularGenitive,
                      String expectedPluralNominative, String expectedPluralGenitive) {
         namedOrder.setRoot(root);
-        namedOrder.setNamedOrderNumber(namedOrderNumber);
+        namedOrder.setNumber(namedOrderNumber);
         namedOrder.setSingular(NamedOrder.Case.NOMINATIVE, expectedSingularNominative);
         namedOrder.setSingular(NamedOrder.Case.GENITIVE, expectedSingularGenitive);
         namedOrder.setPlural(NamedOrder.Case.NOMINATIVE, expectedPluralNominative);
@@ -62,11 +62,11 @@ public class NamedOrderTest {
     @ParameterizedTest
     @DisplayName("Creates valid named orders. that have order number less or equal than 2 and non-masculine gender")
     @MethodSource("firstTwoOrders")
-    void namedOrders(int namedOrderNumber, String root, String expectedSingularNominative,
+    void namedOrders(int expectedNumber, String root, String expectedSingularNominative,
                      String expectedSingularGenitive,
                      String expectedPluralNominative, String expectedPluralGenitive, NamedOrder.Gender expectedGender) {
         namedOrder.setRoot(root);
-        namedOrder.setNamedOrderNumber(namedOrderNumber);
+        namedOrder.setNumber(expectedNumber);
         namedOrder.setSingular(NamedOrder.Case.NOMINATIVE, expectedSingularNominative);
         namedOrder.setSingular(NamedOrder.Case.GENITIVE, expectedSingularGenitive);
         namedOrder.setPlural(NamedOrder.Case.NOMINATIVE, expectedPluralNominative);

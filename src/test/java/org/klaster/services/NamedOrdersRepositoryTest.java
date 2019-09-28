@@ -10,7 +10,7 @@ import org.klaster.models.NamedOrder;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.AssertEquals.assertEquals;
 
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/25/19
@@ -77,7 +77,7 @@ public class NamedOrdersRepositoryTest {
     @DisplayName("Returns NamedOrder by named order number, with default gender, form and case")
     @MethodSource("namedOrders")
     void namedOrdersByNumber(int namedOrderNumber, NamedOrder.Gender expectedGender, String expectedRoot) {
-        NamedOrder namedOrder = namedOrdersRepository.getByNamedOrderNumber(namedOrderNumber);
+        NamedOrder namedOrder = namedOrdersRepository.getByNumber(namedOrderNumber);
         assertEquals(expectedGender, namedOrder.getGender());
         assertEquals(expectedRoot, namedOrder.getRoot());
     }

@@ -13,7 +13,7 @@ import org.klaster.services.NamedOrdersRepository;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.AssertEquals.assertEquals;
 
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/26/19
@@ -47,9 +47,10 @@ public class TripleSequenceFactoryTest {
         return Stream.of(
                 Arguments.of("123", 1),
                 Arguments.of("000", 1),
+                Arguments.of("00", 1),
                 Arguments.of("0", 1),
-                Arguments.of("1000", 2),
-                Arguments.of("1234000111", 4)
+                Arguments.of("1000", 1),
+                Arguments.of("1234000111", 3)
         );
     }
 

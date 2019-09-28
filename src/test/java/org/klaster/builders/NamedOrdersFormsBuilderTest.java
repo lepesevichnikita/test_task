@@ -10,7 +10,7 @@ import org.klaster.models.NamedOrder;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.AssertEquals.assertEquals;
 
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/25/19
@@ -46,7 +46,7 @@ public class NamedOrdersFormsBuilderTest {
                                 String expectedPluralNominative,
                                 String expectedPluralGenitive) {
         NamedOrder namedOrder = new NamedOrder();
-        namedOrder.setNamedOrderNumber(namedOrderNumber);
+        namedOrder.setNumber(namedOrderNumber);
         namedOrder.setRoot(root);
         namedOrder.setGender(gender);
 
