@@ -5,15 +5,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.klaster.builders.DefaultTripleBuilder;
 import org.klaster.builders.DigitsGenderFormsBuilder;
 import org.klaster.builders.NamedOrdersFormsBuilder;
-import org.klaster.builders.TripleBuilder;
+import org.klaster.factories.DefaultDigitsRepositoryFactory;
+import org.klaster.factories.DefaultNamedOrdersRepositoryFactory;
 import org.klaster.factories.TripleFactory;
+import org.klaster.interfaces.DigitsRepository;
+import org.klaster.interfaces.NamedOrdersRepository;
+import org.klaster.interfaces.TripleBuilder;
 import org.klaster.models.Triple;
 
 import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/27/19
@@ -26,7 +29,7 @@ public class TripleAsWordsRepresenterTest {
 
     @BeforeAll
     static void init() {
-        namedOrdersRepository = NamedOrdersRepository.loadRepository();
+        namedOrdersRepository = new DefaultNamedOrdersRepositoryFactory().loadRepository();
         initTripleAsWordsRepresenter();
         initTripleFactory();
     }
@@ -41,10 +44,10 @@ public class TripleAsWordsRepresenterTest {
 
     static void initTripleFactory() {
         tripleFactory = new TripleFactory();
-        TripleBuilder tripleBuilder = new TripleBuilder();
-        DigitsRepository digitsRepository = DigitsRepository.loadRepository();
-        tripleFactory.setTripleBuilder(tripleBuilder);
-        tripleFactory.setDigitsRepository(digitsRepository);
+        TripleBuilder tripleBuilder = new DefaultTripleBuilder();
+        DigitsRepository digitsRepository = new DefaultDigitsRepositoryFactory().loadRepository();
+        tripleFactory.setDefaultTripleBuilder(tripleBuilder);
+        tripleFactory.setDefaultDigitsRepository(digitsRepository);
     }
 
     static Stream<Arguments> triples() {

@@ -5,13 +5,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.klaster.builders.TripleBuilder;
+import org.klaster.builders.DefaultTripleBuilder;
+import org.klaster.interfaces.DigitsRepository;
+import org.klaster.interfaces.TripleBuilder;
 import org.klaster.models.Triple;
-import org.klaster.services.DigitsRepository;
 
 import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/25/19
@@ -27,11 +26,11 @@ public class TripleFactoryTest {
 
     static void initTripleFactory() {
         tripleFactory = new TripleFactory();
-        TripleBuilder tripleBuilder = new TripleBuilder();
-        DigitsRepository digitsRepository = DigitsRepository.loadRepository();
+        TripleBuilder tripleBuilder = new DefaultTripleBuilder();
+        DigitsRepository digitsRepository = new DefaultDigitsRepositoryFactory().loadRepository();
 
-        tripleFactory.setTripleBuilder(tripleBuilder);
-        tripleFactory.setDigitsRepository(digitsRepository);
+        tripleFactory.setDefaultTripleBuilder(tripleBuilder);
+        tripleFactory.setDefaultDigitsRepository(digitsRepository);
     }
 
     static Stream<Arguments> triplesOfZeroOrder() {

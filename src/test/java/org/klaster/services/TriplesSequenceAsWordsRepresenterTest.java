@@ -5,17 +5,21 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.klaster.builders.DefaultTripleBuilder;
+import org.klaster.builders.DefaultTripleSequenceBuilder;
 import org.klaster.builders.DigitsGenderFormsBuilder;
 import org.klaster.builders.NamedOrdersFormsBuilder;
-import org.klaster.builders.TripleBuilder;
-import org.klaster.builders.TripleSequenceBuilder;
+import org.klaster.factories.DefaultDigitsRepositoryFactory;
+import org.klaster.factories.DefaultNamedOrdersRepositoryFactory;
 import org.klaster.factories.TripleFactory;
 import org.klaster.factories.TripleSequenceFactory;
+import org.klaster.interfaces.DigitsRepository;
+import org.klaster.interfaces.NamedOrdersRepository;
+import org.klaster.interfaces.TripleBuilder;
+import org.klaster.interfaces.TripleSequenceBuilder;
 import org.klaster.models.TripleSequence;
 
 import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/27/19
@@ -43,18 +47,18 @@ public class TriplesSequenceAsWordsRepresenterTest {
     }
 
     static void initTripleSequenceFactory() {
-        DigitsRepository digitsRepository = DigitsRepository.loadRepository();
-        NamedOrdersRepository namedOrdersRepository = NamedOrdersRepository.loadRepository();
-        TripleBuilder tripleBuilder = new TripleBuilder();
+        DigitsRepository digitsRepository = new DefaultDigitsRepositoryFactory().loadRepository();
+        NamedOrdersRepository namedOrdersRepository = new DefaultNamedOrdersRepositoryFactory().loadRepository();
+        TripleBuilder tripleBuilder = new DefaultTripleBuilder();
         TripleFactory tripleFactory = new TripleFactory();
-        TripleSequenceBuilder tripleSequenceBuilder = new TripleSequenceBuilder();
+        TripleSequenceBuilder tripleSequenceBuilder = new DefaultTripleSequenceBuilder();
         tripleSequenceFactory = new TripleSequenceFactory();
 
-        tripleFactory.setDigitsRepository(digitsRepository);
-        tripleFactory.setTripleBuilder(tripleBuilder);
-        tripleSequenceFactory.setNamedOrdersRepository(namedOrdersRepository);
+        tripleFactory.setDefaultDigitsRepository(digitsRepository);
+        tripleFactory.setDefaultTripleBuilder(tripleBuilder);
+        tripleSequenceFactory.setDefaultNamedOrdersRepository(namedOrdersRepository);
         tripleSequenceFactory.setTripleFactory(tripleFactory);
-        tripleSequenceFactory.setTripleSequenceBuilder(tripleSequenceBuilder);
+        tripleSequenceFactory.setDefaultTripleSequenceBuilder(tripleSequenceBuilder);
     }
 
     static Stream<Arguments> tripleSequences() {

@@ -5,15 +5,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.klaster.builders.TripleBuilder;
-import org.klaster.builders.TripleSequenceBuilder;
+import org.klaster.builders.DefaultTripleBuilder;
+import org.klaster.builders.DefaultTripleSequenceBuilder;
+import org.klaster.interfaces.DigitsRepository;
+import org.klaster.interfaces.NamedOrdersRepository;
+import org.klaster.interfaces.TripleBuilder;
+import org.klaster.interfaces.TripleSequenceBuilder;
 import org.klaster.models.TripleSequence;
-import org.klaster.services.DigitsRepository;
-import org.klaster.services.NamedOrdersRepository;
 
 import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/26/19
@@ -29,18 +29,18 @@ public class TripleSequenceFactoryTest {
 
     @BeforeAll
     static void init() {
-        digitsRepository      = DigitsRepository.loadRepository();
-        namedOrdersRepository = NamedOrdersRepository.loadRepository();
-        tripleBuilder         = new TripleBuilder();
+        digitsRepository      = new DefaultDigitsRepositoryFactory().loadRepository();
+        namedOrdersRepository = new DefaultNamedOrdersRepositoryFactory().loadRepository();
+        tripleBuilder         = new DefaultTripleBuilder();
         tripleFactory         = new TripleFactory();
-        tripleSequenceBuilder = new TripleSequenceBuilder();
+        tripleSequenceBuilder = new DefaultTripleSequenceBuilder();
         tripleSequenceFactory = new TripleSequenceFactory();
 
-        tripleFactory.setDigitsRepository(digitsRepository);
-        tripleFactory.setTripleBuilder(tripleBuilder);
-        tripleSequenceFactory.setNamedOrdersRepository(namedOrdersRepository);
+        tripleFactory.setDefaultDigitsRepository(digitsRepository);
+        tripleFactory.setDefaultTripleBuilder(tripleBuilder);
+        tripleSequenceFactory.setDefaultNamedOrdersRepository(namedOrdersRepository);
         tripleSequenceFactory.setTripleFactory(tripleFactory);
-        tripleSequenceFactory.setTripleSequenceBuilder(tripleSequenceBuilder);
+        tripleSequenceFactory.setDefaultTripleSequenceBuilder(tripleSequenceBuilder);
     }
 
     static Stream<Arguments> sequences() {

@@ -1,21 +1,30 @@
-package org.klaster.models;
+package org.klaster.services;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.klaster.builders.DefaultDigitBuilder;
+import org.klaster.factories.DefaultDigitsRepositoryFactory;
+import org.klaster.interfaces.DigitsRepository;
+import org.klaster.models.Declension;
+import org.klaster.models.Digit;
 
 import java.util.stream.Stream;
 
 /**
- * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/24/19
+ * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/25/19
  * @project testtask
  */
 
-public class DigitTest {
-    private Digit digit;
+public class DefaultDigitsRepositoryTest {
+    static DigitsRepository digitsRepository;
+
+    @BeforeAll
+    static void init() {
+        digitsRepository = new DefaultDigitsRepositoryFactory().loadRepository();
+    }
 
     private static Stream<Arguments> digitsWithFeminineAndNeuterFormsUnderTen() {
         return Stream.of(
@@ -41,6 +50,7 @@ public class DigitTest {
         return Stream.of(
                 Arguments.of("10", 1, "десять", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
                 Arguments.of("11", 1, "одиннадцать", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
+                Arguments.of("12", 1, "двенадцать", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
                 Arguments.of("13", 1, "тринадцать", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
                 Arguments.of("14", 1, "четырнадцать", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
                 Arguments.of("15", 1, "пятнадцать", "", Declension.Form.PLURAL, Declension.Case.GENITIVE),
@@ -78,36 +88,30 @@ public class DigitTest {
         );
     }
 
-    @BeforeEach
-    void init() {
-        digit = new DefaultDigitBuilder().getResult();
+    @Test
+    @DisplayName("Has 38 digits")
+    void hasThirtyEightDigits() {
+        assertEquals(37, digitsRepository.getItems().size());
     }
 
     @ParameterizedTest
-    @DisplayName("Converts base digits under 10 without feminine and neuter form to its masculine form in different " +
-                         "genders")
+    @DisplayName("Returns Digit by position in triple and digit")
     @MethodSource({
                           "digitsWithFeminineAndNeuterFormsUnderTen",
                           "digitsWithoutFeminineAndNeuterFormsUnderTen",
-                          "hundreds",
                           "numbersBetweenTenAndTwenty",
-                          "tens"
+                          "tens",
+                          "hundreds"
                   })
-    void digitsWithoutFeminineAndNeuterFormsUnderTen(String symbol,
-                                                     int positionInTriple,
-                                                     String masculineForm,
-                                                     String feminineForm,
-                                                     Declension.Form requiredNamedOrderForm,
-                                                     Declension.Case requiredNamedOrderCase) {
-        digit.setSymbol(symbol);
-        digit.setPositionInTriple(positionInTriple);
-        digit.setGenderForm(Declension.Gender.MASCULINE, masculineForm);
-        digit.setGenderForm(Declension.Gender.FEMININE, feminineForm);
-        digit.setForm(requiredNamedOrderForm);
-        digit.setCase(requiredNamedOrderCase);
-
-        assertEquals(masculineForm, digit.getGenderForm(Declension.Gender.MASCULINE));
-        assertEquals(feminineForm, digit.getGenderForm(Declension.Gender.FEMININE));
+    void getsDigitByPositionInTripleAndDigit(String symbol, int positionInTriple, String expectedMasculineForm,
+                                             String expectedFeminineForm,
+                                             Declension.Form expectedForm,
+                                             Declension.Case expectedCase) {
+        Digit actualDigit = digitsRepository.getDigitByPositionInTripleAndSymbol(symbol, positionInTriple);
+        assertEquals(expectedMasculineForm, actualDigit.getGenderForm(Declension.Gender.MASCULINE));
+        assertEquals(expectedFeminineForm, actualDigit.getGenderForm(Declension.Gender.FEMININE));
+        assertEquals(expectedForm, actualDigit.getForm());
+        assertEquals(expectedCase, actualDigit.getCase());
     }
 
 }
