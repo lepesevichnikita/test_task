@@ -18,7 +18,7 @@ public class TripleFactory {
         return tripleBuilder;
     }
 
-    public void setDefaultTripleBuilder(TripleBuilder tripleBuilder) {
+    public void setTripleBuilder(TripleBuilder tripleBuilder) {
         this.tripleBuilder = tripleBuilder;
     }
 
@@ -59,7 +59,7 @@ public class TripleFactory {
 
     public void setSource(String source) { this.source = new StringBuilder(source).reverse().toString(); }
 
-    public void setDefaultDigitsRepository(DigitsRepository digitsRepository) {
+    public void setDigitsRepository(DigitsRepository digitsRepository) {
         this.digitsRepository = digitsRepository;
     }
 

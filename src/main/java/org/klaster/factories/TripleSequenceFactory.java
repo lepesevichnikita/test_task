@@ -47,15 +47,15 @@ public class TripleSequenceFactory {
         this.tripleFactory = tripleFactory;
     }
 
-    public NamedOrdersRepository getDefaultNamedOrdersRepository() { return namedOrdersRepository; }
+    public NamedOrdersRepository getNamedOrdersRepository() { return namedOrdersRepository; }
 
-    public void setDefaultNamedOrdersRepository(NamedOrdersRepository namedOrdersRepository) {
+    public void setNamedOrdersRepository(NamedOrdersRepository namedOrdersRepository) {
         this.namedOrdersRepository = namedOrdersRepository;
     }
 
-    public TripleSequenceBuilder getDefaultTripleSequenceBuilder() { return tripleSequenceBuilder; }
+    public TripleSequenceBuilder getTripleSequenceBuilder() { return tripleSequenceBuilder; }
 
-    public void setDefaultTripleSequenceBuilder(TripleSequenceBuilder tripleSequenceBuilder) {
+    public void setTripleSequenceBuilder(TripleSequenceBuilder tripleSequenceBuilder) {
         this.tripleSequenceBuilder = tripleSequenceBuilder;
     }
 
