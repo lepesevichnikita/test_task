@@ -1,4 +1,4 @@
-package org.klaster.builders;
+package org.klaster.representers;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -7,6 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.klaster.builders.DefaultDigitBuilder;
+import org.klaster.interfaces.DigitAsStringRepresenter;
 import org.klaster.models.Declension;
 import org.klaster.models.Digit;
 
@@ -18,8 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/25/19
  * @project testtask
  */
-public class DigitsGenderFormsBuilderTest {
-    static  DigitsGenderFormsBuilder digitsGenderFormsBuilder;
+public class DefaultDigitAsStringRepresenterTest {
+    static  DigitAsStringRepresenter digitAsStringRepresenter;
     private Digit                    digit;
 
     @BeforeEach
@@ -29,7 +31,7 @@ public class DigitsGenderFormsBuilderTest {
 
     @BeforeAll
     static void init() {
-        digitsGenderFormsBuilder = new DigitsGenderFormsBuilder();
+        digitAsStringRepresenter = new DefaultDigitAsStringRepresenter();
     }
 
     private static Stream<Arguments> digitsUnderTwo() {
@@ -95,7 +97,7 @@ public class DigitsGenderFormsBuilderTest {
 
     @AfterEach
     void reset() {
-        digitsGenderFormsBuilder.reset();
+        digitAsStringRepresenter.reset();
     }
 
     @ParameterizedTest
@@ -109,11 +111,9 @@ public class DigitsGenderFormsBuilderTest {
         digit.setGenderForm(Declension.Gender.MASCULINE, expectedMasculineForm);
         digit.setGenderForm(Declension.Gender.FEMININE, expectedFeminineForm);
 
-        digitsGenderFormsBuilder.withDigit(digit);
-        assertEquals(expectedMasculineForm, digitsGenderFormsBuilder.getResult());
-
-        digitsGenderFormsBuilder.withGender(Declension.Gender.FEMININE);
-        assertEquals(expectedMasculineForm, digitsGenderFormsBuilder.getResult());
+        assertEquals(expectedMasculineForm, digitAsStringRepresenter.from(digit));
+        assertEquals(expectedMasculineForm,
+                     digitAsStringRepresenter.withGender(Declension.Gender.MASCULINE).from(digit));
     }
 
     @ParameterizedTest
@@ -127,10 +127,7 @@ public class DigitsGenderFormsBuilderTest {
         digit.setGenderForm(Declension.Gender.MASCULINE, expectedMasculineForm);
         digit.setGenderForm(Declension.Gender.FEMININE, expectedFeminineForm);
 
-        digitsGenderFormsBuilder.withDigit(digit);
-        assertEquals(expectedMasculineForm, digitsGenderFormsBuilder.getResult());
-
-        digitsGenderFormsBuilder.withGender(Declension.Gender.FEMININE);
-        assertEquals(expectedFeminineForm, digitsGenderFormsBuilder.getResult());
+        assertEquals(expectedMasculineForm, digitAsStringRepresenter.from(digit));
+        assertEquals(expectedFeminineForm, digitAsStringRepresenter.withGender(Declension.Gender.FEMININE).from(digit));
     }
 }

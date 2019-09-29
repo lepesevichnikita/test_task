@@ -5,8 +5,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.klaster.builders.*;
-import org.klaster.factories.TripleSequenceFactory;
+import org.klaster.builders.DefaultTripleSequenceAsStringRepresenterBuilder;
+import org.klaster.builders.DefaultTripleSequenceFactoryBuilder;
+import org.klaster.interfaces.TripleSequenceAsStringRepresenter;
+import org.klaster.interfaces.TripleSequenceFactory;
 import org.klaster.models.TripleSequence;
 
 import java.util.stream.Stream;
@@ -17,8 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/27/19
  * @project testtask
  */
-public class TriplesSequenceAsWordsRepresenterTest {
-    static private TriplesSequenceAsWordsRepresenter tripleSequenceAsWordsRepresenter;
+public class DefaultTripleSequenceAsStringRepresenterTest {
+    static private TripleSequenceAsStringRepresenter tripleSequenceAsStringRepresenter;
     static private TripleSequenceFactory             tripleSequenceFactory;
 
     @BeforeAll
@@ -28,7 +30,7 @@ public class TriplesSequenceAsWordsRepresenterTest {
     }
 
     static void initTripleSequenceAsWordsRepresenter() {
-        tripleSequenceAsWordsRepresenter = new DefaultTripleSequenceAsWordsRepresenterBuilder().getResult();
+        tripleSequenceAsStringRepresenter = new DefaultTripleSequenceAsStringRepresenterBuilder().getResult();
     }
 
     static void initTripleSequenceFactory() {
@@ -81,9 +83,9 @@ public class TriplesSequenceAsWordsRepresenterTest {
     @MethodSource("tripleSequences")
     void wordsRepresentationOfTripleSequence(String numberAsStringOfDigits, String expectedWordsRepresentation) {
         tripleSequenceFactory.setSource(numberAsStringOfDigits);
-        TripleSequence tripleSequence = tripleSequenceFactory.createTripleSequence();
-        tripleSequenceAsWordsRepresenter.setTripleSequence(tripleSequence);
-        assertEquals(expectedWordsRepresentation, tripleSequenceAsWordsRepresenter.asString());
+        TripleSequence tripleSequence = tripleSequenceFactory.loadRepository();
+        assertEquals(expectedWordsRepresentation,
+                     tripleSequenceAsStringRepresenter.from(tripleSequence));
     }
 }
 

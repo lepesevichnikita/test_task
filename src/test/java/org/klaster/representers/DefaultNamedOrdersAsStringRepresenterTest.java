@@ -1,4 +1,4 @@
-package org.klaster.builders;
+package org.klaster.representers;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -6,6 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.klaster.builders.DefaultNamedOrdersAsStringRepresenterBuilder;
+import org.klaster.interfaces.NamedOrdersAsStringRepresenter;
 import org.klaster.models.Declension;
 import org.klaster.models.NamedOrder;
 
@@ -18,8 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @project testtask
  */
 
-public class NamedOrdersFormsBuilderTest {
-    private static NamedOrdersFormsBuilder namedOrdersFormsBuilder;
+public class DefaultNamedOrdersAsStringRepresenterTest {
+    private static NamedOrdersAsStringRepresenter namedOrdersAsStringRepresenter;
 
     private static Stream<Arguments> namedOrders() {
         return Stream.of(
@@ -31,12 +33,12 @@ public class NamedOrdersFormsBuilderTest {
 
     @BeforeAll
     static void init() {
-        namedOrdersFormsBuilder = new NamedOrdersFormsBuilder();
+        namedOrdersAsStringRepresenter = new DefaultNamedOrdersAsStringRepresenterBuilder().getResult();
     }
 
     @AfterEach
     void reset() {
-        namedOrdersFormsBuilder.reset();
+        namedOrdersAsStringRepresenter.reset();
     }
 
     @ParameterizedTest
@@ -51,16 +53,16 @@ public class NamedOrdersFormsBuilderTest {
         namedOrder.setRoot(root);
         namedOrder.setGender(gender);
 
-        namedOrdersFormsBuilder.withNamedOrder(namedOrder);
-        assertEquals(expectedSingularNominative, namedOrdersFormsBuilder.getResult());
+        assertEquals(expectedSingularNominative, namedOrdersAsStringRepresenter.from(namedOrder));
 
-        namedOrdersFormsBuilder.withCase(Declension.Case.GENITIVE);
-        assertEquals(expectedSingularGenitive, namedOrdersFormsBuilder.getResult());
+        assertEquals(expectedSingularGenitive,
+                     namedOrdersAsStringRepresenter.withCase(Declension.Case.GENITIVE).from(namedOrder));
+        assertEquals(expectedPluralNominative,
+                     namedOrdersAsStringRepresenter.withForm(Declension.Form.PLURAL)
+                                                   .withCase(Declension.Case.NOMINATIVE)
+                                                   .from(namedOrder));
 
-        namedOrdersFormsBuilder.withForm(Declension.Form.PLURAL).withCase(Declension.Case.NOMINATIVE);
-        assertEquals(expectedPluralNominative, namedOrdersFormsBuilder.getResult());
-
-        namedOrdersFormsBuilder.withCase(Declension.Case.GENITIVE);
-        assertEquals(expectedPluralGenitive, namedOrdersFormsBuilder.getResult());
+        assertEquals(expectedPluralGenitive,
+                     namedOrdersAsStringRepresenter.withCase(Declension.Case.GENITIVE).from(namedOrder));
     }
 }

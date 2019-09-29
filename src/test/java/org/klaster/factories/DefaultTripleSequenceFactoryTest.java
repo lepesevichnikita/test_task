@@ -7,10 +7,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.klaster.builders.DefaultTripleBuilder;
 import org.klaster.builders.DefaultTripleSequenceBuilder;
-import org.klaster.interfaces.DigitsRepository;
-import org.klaster.interfaces.NamedOrdersRepository;
-import org.klaster.interfaces.TripleBuilder;
-import org.klaster.interfaces.TripleSequenceBuilder;
+import org.klaster.interfaces.*;
 import org.klaster.models.TripleSequence;
 
 import java.util.stream.Stream;
@@ -21,11 +18,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/26/19
  * @project testtask
  */
-public class TripleSequenceFactoryTest {
+public class DefaultTripleSequenceFactoryTest {
     static private DigitsRepository      digitsRepository;
     static private NamedOrdersRepository namedOrdersRepository;
     static private TripleBuilder         tripleBuilder;
-    static private TripleFactory         tripleFactory;
+    static private DefaultTripleFactory  tripleFactory;
     static private TripleSequenceBuilder tripleSequenceBuilder;
     static private TripleSequenceFactory tripleSequenceFactory;
 
@@ -34,9 +31,9 @@ public class TripleSequenceFactoryTest {
         digitsRepository      = new DefaultDigitsRepositoryFactory().loadRepository();
         namedOrdersRepository = new DefaultNamedOrdersRepositoryFactory().loadRepository();
         tripleBuilder         = new DefaultTripleBuilder();
-        tripleFactory         = new TripleFactory();
+        tripleFactory         = new DefaultTripleFactory();
         tripleSequenceBuilder = new DefaultTripleSequenceBuilder();
-        tripleSequenceFactory = new TripleSequenceFactory();
+        tripleSequenceFactory = new DefaultTripleSequenceFactory();
 
         tripleFactory.setDigitsRepository(digitsRepository);
         tripleFactory.setTripleBuilder(tripleBuilder);
@@ -61,7 +58,7 @@ public class TripleSequenceFactoryTest {
     @MethodSource("sequences")
     void sequencesBuilding(String numberAsString, int expectedTriplesCount) {
         tripleSequenceFactory.setSource(numberAsString);
-        TripleSequence tripleSequence = tripleSequenceFactory.createTripleSequence();
+        TripleSequence tripleSequence = tripleSequenceFactory.loadRepository();
         assertEquals(expectedTriplesCount, tripleSequence.getTriples().size());
     }
 
