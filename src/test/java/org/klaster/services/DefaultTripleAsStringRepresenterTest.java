@@ -5,11 +5,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.klaster.builders.DefaultTripleAsWordsRepresenterBuilder;
+import org.klaster.builders.DefaultTripleAsStringRepresenterBuilder;
 import org.klaster.builders.DefaultTripleFactoryBuilder;
 import org.klaster.factories.DefaultNamedOrdersRepositoryFactory;
-import org.klaster.factories.TripleFactory;
 import org.klaster.interfaces.NamedOrdersRepository;
+import org.klaster.interfaces.TripleAsStringRepresenter;
+import org.klaster.interfaces.TripleFactory;
 import org.klaster.models.Triple;
 
 import java.util.stream.Stream;
@@ -20,10 +21,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/27/19
  * @project testtask
  */
-public class TripleAsWordsRepresenterTest {
-    static private TripleAsWordsRepresenter tripleAsWordsRepresenter;
-    static private TripleFactory            tripleFactory;
-    static private NamedOrdersRepository    namedOrdersRepository;
+public class DefaultTripleAsStringRepresenterTest {
+    static private TripleAsStringRepresenter tripleAsStringRepresenter;
+    static private TripleFactory             tripleFactory;
+    static private NamedOrdersRepository     namedOrdersRepository;
 
     @BeforeAll
     static void init() {
@@ -33,7 +34,7 @@ public class TripleAsWordsRepresenterTest {
     }
 
     static void initTripleAsWordsRepresenter() {
-        tripleAsWordsRepresenter = new DefaultTripleAsWordsRepresenterBuilder().getResult();
+        tripleAsStringRepresenter = new DefaultTripleAsStringRepresenterBuilder().getResult();
     }
 
     static void initTripleFactory() {
@@ -94,9 +95,9 @@ public class TripleAsWordsRepresenterTest {
     void stringRepresentationOfTriple(String tripleSource, int orderNumber,
                                       String expectedStringRepresentationOfTriple) {
         tripleFactory.setSource(tripleSource);
-        Triple actualTriple = tripleFactory.createTriple();
+        Triple actualTriple = tripleFactory.loadRepository();
         actualTriple.setNamedOrder(namedOrdersRepository.getByNumber(orderNumber));
-        tripleAsWordsRepresenter.setTriple(actualTriple);
-        assertEquals(expectedStringRepresentationOfTriple, tripleAsWordsRepresenter.asString());
+        assertEquals(expectedStringRepresentationOfTriple,
+                     tripleAsStringRepresenter.from(actualTriple));
     }
 }

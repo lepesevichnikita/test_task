@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.klaster.builders.DefaultTripleBuilder;
 import org.klaster.interfaces.DigitsRepository;
 import org.klaster.interfaces.TripleBuilder;
+import org.klaster.interfaces.TripleFactory;
 import org.klaster.models.Triple;
 
 import java.util.stream.Stream;
@@ -18,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/25/19
  * @project testtask
  */
-public class TripleFactoryTest {
+public class DefaultTripleFactoryTest {
     static private TripleFactory tripleFactory;
 
     @BeforeAll
@@ -27,7 +28,7 @@ public class TripleFactoryTest {
     }
 
     static void initTripleFactory() {
-        tripleFactory = new TripleFactory();
+        tripleFactory = new DefaultTripleFactory();
         TripleBuilder tripleBuilder = new DefaultTripleBuilder();
         DigitsRepository digitsRepository = new DefaultDigitsRepositoryFactory().loadRepository();
 
@@ -56,7 +57,7 @@ public class TripleFactoryTest {
     @MethodSource("triplesOfZeroOrder")
     void buildTriples(String tripleAsString, int expectedDigitsCount) {
         tripleFactory.setSource(tripleAsString);
-        Triple result = tripleFactory.createTriple();
+        Triple result = tripleFactory.loadRepository();
         assertEquals(expectedDigitsCount, result.getDigits().size());
     }
 }
