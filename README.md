@@ -53,10 +53,13 @@
 
 * Класс Suffix хранит окончание, род, число и падеж (которые для удобства объединены в класс Declension), которые в дальнейшем используются для формирования словесного представления порядка в DefaultNamedOrdersAsStringRepresenter
 
+* Все суффиксы хранятся в файле suffixes.yaml, а доступ к ним предоставляет класс DefaultSuffixesRepository, который лучше инициализировать посредством вызова метода create() у экземпляра класса DefaultSuffixesFactory
+
 * За формирование словесного представления цифры отвечает класс DefaultDigitsAsStringRepresenter
 
 * Построение словесной формы всего числа происходит в классе DefaultTripleSequenceAsStringRepresenter, когда последовательно формируются словесные представления каждой из троек
 
+* Файлы-словари digits.yaml, named_orders.yaml и suffixes.yaml хранятся в папке src/main/sources для основной программы и в src/test/sources для тестов соответственно
 
 ## Примечание
 
