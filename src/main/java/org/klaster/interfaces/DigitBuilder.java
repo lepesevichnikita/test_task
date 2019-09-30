@@ -9,7 +9,7 @@ import java.util.Map;
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/28/19
  * @project testtask
  */
-public interface DigitBuilder extends ModelBuilder<Digit> {
+public interface DigitBuilder extends Builder<Digit> {
     DigitBuilder withGenders(Map<Declension.Gender, String> genders);
 
     DigitBuilder withCase(Declension.Case aCase);
