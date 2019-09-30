@@ -18,32 +18,25 @@ public class NamedOrder {
         this.forms  = new HashMap<Declension.Form, Map<Declension.Case, String>>();
     }
 
-    public Declension.Gender getGender()                                          { return gender; }
+    public Declension.Gender getGender()                           { return gender; }
 
-    public void setGender(Declension.Gender gender)                               { this.gender = gender; }
-
-
-    public int getNumber()                                                        { return number; }
-
-    public void setNumber(int number)                                             { this.number = number; }
+    public void setGender(Declension.Gender gender)                { this.gender = gender; }
 
 
-    public String getSingular(Declension.Case wordCase)                           {
-                                                                                      return getSingularCases().get(
-                                                                                              wordCase);
-                                                                                  }
+    public int getNumber()                                         { return number; }
 
-    public void setSingular(Declension.Case wordCase, String word)                {
-                                                                                      getSingularCases().put(wordCase,
-                                                                                                             word);
-                                                                                  }
+    public void setNumber(int number)                              { this.number = number; }
 
-    public String getPlural(Declension.Case wordCase)                             {return getPluralCases().get(wordCase);}
 
-    public void setPlural(Declension.Case wordCase, String word)                  {
-                                                                                      getPluralCases().put(wordCase,
-                                                                                                           word);
-                                                                                  }
+    public String getSingular(Declension.Case wordCase)            { return getSingularCases().get(wordCase); }
+
+    public void setSingular(Declension.Case wordCase, String word) { getSingularCases().put(wordCase, word); }
+
+    public String getPlural(Declension.Case wordCase)              { return getPluralCases().get(wordCase);}
+
+    public void setPlural(Declension.Case wordCase, String word) {
+        getPluralCases().put(wordCase, word);
+    }
 
 
     public Map<Declension.Case, String> getCasesByForm(Declension.Form form)      { return forms.get(form); }

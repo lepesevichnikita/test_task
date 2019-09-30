@@ -6,23 +6,28 @@ package org.klaster.models;
  */
 
 public class Suffix {
-    private final Declension.Gender gender;
-    private final Declension.Form   form;
-    private final Declension.Case   aCase;
-    private final String            value;
+    private Declension declension;
+    private String     value;
 
-    public Suffix(Declension.Gender gender, Declension.Form form, Declension.Case aCase, String value) {
-        this.aCase  = aCase;
-        this.form   = form;
-        this.gender = gender;
+    public Suffix(Declension declension, String value) {
+        this.declension = declension;
         this.value  = value;
     }
 
-    public Declension.Gender getGender() {return gender; }
+    public Suffix()          {}
 
-    public Declension.Form getForm()     {return form; }
 
-    public Declension.Case getCase()     {return aCase; }
+    public String getValue() { return value; }
 
-    public String getValue()             { return value; }
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public Declension getDeclension() {
+        return declension;
+    }
+
+    public void setDeclension(Declension declension) {
+        this.declension = declension;
+    }
 }

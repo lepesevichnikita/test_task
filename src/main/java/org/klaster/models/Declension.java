@@ -9,6 +9,18 @@ public class Declension {
     private Case   aCase;
     private Gender gender;
 
+    public Declension(Case aCase, Form form, Gender gender) {
+        this.aCase  = aCase;
+        this.form   = form;
+        this.gender = gender;
+    }
+
+    public Declension() {}
+
+    public boolean equals(Declension declension) {
+        return aCase == declension.getaCase() && form == declension.getForm() && gender == declension.getGender();
+    }
+
     public Form getForm() {
         return form;
     }
