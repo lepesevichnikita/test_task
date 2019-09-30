@@ -9,12 +9,12 @@ import java.io.InputStream;
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/28/19
  * @project testtask
  */
-public interface RepositoryFactory<T> {
+public interface RepositoryFactory<T extends DictionaryRepository> extends Factory<T> {
     String getDictionaryName();
 
-    Class<?> getRepositoryClass();
+    Class getRepositoryClass();
 
-    default T loadRepository() {
+    default T create() {
         Constructor ctr = new Constructor(getRepositoryClass());
         Yaml yaml = new Yaml(ctr);
         InputStream inputStream = getRepositoryClass()
