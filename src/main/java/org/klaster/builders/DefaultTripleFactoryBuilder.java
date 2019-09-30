@@ -1,38 +1,43 @@
 package org.klaster.builders;
 
 import org.klaster.factories.DefaultDigitsRepositoryFactory;
-import org.klaster.factories.TripleFactory;
+import org.klaster.factories.DefaultTripleFactory;
 import org.klaster.interfaces.DigitsRepository;
 import org.klaster.interfaces.TripleBuilder;
+import org.klaster.interfaces.TripleFactory;
+import org.klaster.interfaces.TripleFactoryBuilder;
 
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/28/19
  * @project testtask
  */
-public class DefaultTripleFactoryBuilder {
+public class DefaultTripleFactoryBuilder implements TripleFactoryBuilder {
     private DigitsRepository digitsRepository;
     private TripleBuilder    tripleBuilder;
-    private TripleFactory    result;
     private String           source;
 
     public DefaultTripleFactoryBuilder() { reset(); }
 
-    public DefaultTripleFactoryBuilder withTripleBuilder(TripleBuilder tripleBuilder) {
+    @Override
+    public TripleFactoryBuilder withTripleBuilder(TripleBuilder tripleBuilder) {
         this.tripleBuilder = tripleBuilder;
         return this;
     }
 
-    public DefaultTripleFactoryBuilder withDigitsRepository(DigitsRepository digitsRepository) {
+    @Override
+    public TripleFactoryBuilder withDigitsRepository(DigitsRepository digitsRepository) {
         this.digitsRepository = digitsRepository;
         return this;
     }
 
-    public DefaultTripleFactoryBuilder withSource(String source) {
+    @Override
+    public TripleFactoryBuilder withSource(String source) {
         this.source = source;
         return this;
     }
 
     public TripleFactory getResult() {
+        TripleFactory result = new DefaultTripleFactory();
         result.setSource(source);
         result.setDigitsRepository(digitsRepository);
         result.setTripleBuilder(tripleBuilder);
@@ -40,8 +45,7 @@ public class DefaultTripleFactoryBuilder {
     }
 
     public void reset() {
-        result           = new TripleFactory();
-        digitsRepository = new DefaultDigitsRepositoryFactory().loadRepository();
+        digitsRepository = new DefaultDigitsRepositoryFactory().create();
         tripleBuilder    = new DefaultTripleBuilder();
         source           = "";
     }
