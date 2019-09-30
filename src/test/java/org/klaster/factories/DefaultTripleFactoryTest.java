@@ -30,7 +30,7 @@ public class DefaultTripleFactoryTest {
     static void initTripleFactory() {
         tripleFactory = new DefaultTripleFactory();
         TripleBuilder tripleBuilder = new DefaultTripleBuilder();
-        DigitsRepository digitsRepository = new DefaultDigitsRepositoryFactory().loadRepository();
+        DigitsRepository digitsRepository = new DefaultDigitsRepositoryFactory().create();
 
         tripleFactory.setTripleBuilder(tripleBuilder);
         tripleFactory.setDigitsRepository(digitsRepository);
@@ -57,7 +57,7 @@ public class DefaultTripleFactoryTest {
     @MethodSource("triplesOfZeroOrder")
     void buildTriples(String tripleAsString, int expectedDigitsCount) {
         tripleFactory.setSource(tripleAsString);
-        Triple result = tripleFactory.loadRepository();
+        Triple result = tripleFactory.create();
         assertEquals(expectedDigitsCount, result.getDigits().size());
     }
 }

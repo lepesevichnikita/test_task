@@ -28,8 +28,8 @@ public class DefaultTripleSequenceFactoryTest {
 
     @BeforeAll
     static void init() {
-        digitsRepository      = new DefaultDigitsRepositoryFactory().loadRepository();
-        namedOrdersRepository = new DefaultNamedOrdersRepositoryFactory().loadRepository();
+        digitsRepository      = new DefaultDigitsRepositoryFactory().create();
+        namedOrdersRepository = new DefaultNamedOrdersRepositoryFactory().create();
         tripleBuilder         = new DefaultTripleBuilder();
         tripleFactory         = new DefaultTripleFactory();
         tripleSequenceBuilder = new DefaultTripleSequenceBuilder();
@@ -58,7 +58,7 @@ public class DefaultTripleSequenceFactoryTest {
     @MethodSource("sequences")
     void sequencesBuilding(String numberAsString, int expectedTriplesCount) {
         tripleSequenceFactory.setSource(numberAsString);
-        TripleSequence tripleSequence = tripleSequenceFactory.loadRepository();
+        TripleSequence tripleSequence = tripleSequenceFactory.create();
         assertEquals(expectedTriplesCount, tripleSequence.getTriples().size());
     }
 

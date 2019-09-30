@@ -25,7 +25,7 @@ public class DefaultDigitsRepositoryTest {
 
     @BeforeAll
     static void init() {
-        digitsRepository = new DefaultDigitsRepositoryFactory().loadRepository();
+        digitsRepository = new DefaultDigitsRepositoryFactory().create();
     }
 
     private static Stream<Arguments> digitsWithFeminineAndNeuterFormsUnderTen() {

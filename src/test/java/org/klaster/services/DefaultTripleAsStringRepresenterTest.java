@@ -5,11 +5,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.klaster.builders.DefaultTripleAsStringRepresenterBuilder;
 import org.klaster.builders.DefaultTripleFactoryBuilder;
 import org.klaster.factories.DefaultNamedOrdersRepositoryFactory;
 import org.klaster.interfaces.NamedOrdersRepository;
 import org.klaster.interfaces.TripleAsStringRepresenter;
+import org.klaster.builders.DefaultTripleAsStringRepresenterBuilder;
 import org.klaster.interfaces.TripleFactory;
 import org.klaster.models.Triple;
 
@@ -28,7 +28,7 @@ public class DefaultTripleAsStringRepresenterTest {
 
     @BeforeAll
     static void init() {
-        namedOrdersRepository = new DefaultNamedOrdersRepositoryFactory().loadRepository();
+        namedOrdersRepository = new DefaultNamedOrdersRepositoryFactory().create();
         initTripleAsWordsRepresenter();
         initTripleFactory();
     }
@@ -95,9 +95,8 @@ public class DefaultTripleAsStringRepresenterTest {
     void stringRepresentationOfTriple(String tripleSource, int orderNumber,
                                       String expectedStringRepresentationOfTriple) {
         tripleFactory.setSource(tripleSource);
-        Triple actualTriple = tripleFactory.loadRepository();
+        Triple actualTriple = tripleFactory.create();
         actualTriple.setNamedOrder(namedOrdersRepository.getByNumber(orderNumber));
-        assertEquals(expectedStringRepresentationOfTriple,
-                     tripleAsStringRepresenter.from(actualTriple));
+        assertEquals(expectedStringRepresentationOfTriple, tripleAsStringRepresenter.from(actualTriple));
     }
 }
