@@ -1,16 +1,14 @@
 package org.klaster.builders;
 
 import org.klaster.factories.DefaultNamedOrdersRepositoryFactory;
-import org.klaster.factories.TripleFactory;
-import org.klaster.factories.TripleSequenceFactory;
-import org.klaster.interfaces.NamedOrdersRepository;
-import org.klaster.interfaces.TripleSequenceBuilder;
+import org.klaster.factories.DefaultTripleSequenceFactory;
+import org.klaster.interfaces.*;
 
 /**
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/28/19
  * @project testtask
  */
-public class DefaultTripleSequenceFactoryBuilder {
+public class DefaultTripleSequenceFactoryBuilder implements TripleSequenceFactoryBuilder {
     private NamedOrdersRepository namedOrdersRepository;
     private String                source;
     private TripleFactory         tripleFactory;
@@ -18,28 +16,33 @@ public class DefaultTripleSequenceFactoryBuilder {
 
     public DefaultTripleSequenceFactoryBuilder() { reset(); }
 
-    public DefaultTripleSequenceFactoryBuilder withNamedOrdersRepository(NamedOrdersRepository namedOrdersRepository) {
+    @Override
+    public TripleSequenceFactoryBuilder withNamedOrdersRepository(NamedOrdersRepository namedOrdersRepository) {
         this.namedOrdersRepository = namedOrdersRepository;
         return this;
     }
 
-    public DefaultTripleSequenceFactoryBuilder withSource(String source) {
+    @Override
+    public TripleSequenceFactoryBuilder withSource(String source) {
         this.source = source;
         return this;
     }
 
-    public DefaultTripleSequenceFactoryBuilder withTripleFactory(TripleFactory tripleFactory) {
+    @Override
+    public TripleSequenceFactoryBuilder withTripleFactory(TripleFactory tripleFactory) {
         this.tripleFactory = tripleFactory;
         return this;
     }
 
-    public DefaultTripleSequenceFactoryBuilder withTripleSequenceBuilder(TripleSequenceBuilder tripleSequenceBuilder) {
+    @Override
+    public TripleSequenceFactoryBuilder withTripleSequenceBuilder(TripleSequenceBuilder tripleSequenceBuilder) {
         this.tripleSequenceBuilder = tripleSequenceBuilder;
         return this;
     }
 
+    @Override
     public TripleSequenceFactory getResult() {
-        TripleSequenceFactory result = new TripleSequenceFactory();
+        TripleSequenceFactory result = new DefaultTripleSequenceFactory();
         result.setSource(source);
         result.setNamedOrdersRepository(namedOrdersRepository);
         result.setTripleFactory(tripleFactory);
@@ -47,8 +50,9 @@ public class DefaultTripleSequenceFactoryBuilder {
         return result;
     }
 
+    @Override
     public void reset() {
-        namedOrdersRepository = new DefaultNamedOrdersRepositoryFactory().loadRepository();
+        namedOrdersRepository = new DefaultNamedOrdersRepositoryFactory().create();
         source                = "";
         tripleFactory         = new DefaultTripleFactoryBuilder().getResult();
         tripleSequenceBuilder = new DefaultTripleSequenceBuilder();
