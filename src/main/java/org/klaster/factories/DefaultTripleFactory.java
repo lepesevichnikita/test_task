@@ -2,6 +2,7 @@ package org.klaster.factories;
 
 import org.klaster.interfaces.DigitsRepository;
 import org.klaster.interfaces.TripleBuilder;
+import org.klaster.interfaces.TripleFactory;
 import org.klaster.models.Digit;
 import org.klaster.models.Triple;
 
@@ -9,20 +10,23 @@ import org.klaster.models.Triple;
  * @author Nikita Lepesevich <lepesevich.nikita@yandex.ru> on 9/26/19
  * @project testtask
  */
-public class TripleFactory {
+public class DefaultTripleFactory implements TripleFactory {
     private TripleBuilder    tripleBuilder;
     private DigitsRepository digitsRepository;
     private String           source;
 
-    public TripleBuilder getDefaultTripleBuilder() {
+    @Override
+    public TripleBuilder getTripleBuilder() {
         return tripleBuilder;
     }
 
+    @Override
     public void setTripleBuilder(TripleBuilder tripleBuilder) {
         this.tripleBuilder = tripleBuilder;
     }
 
-    public Triple createTriple() {
+    @Override
+    public Triple create() {
         int sourceLength = source.length();
         assert (sourceLength <= 3);
         assert (tripleBuilder != null);
@@ -46,19 +50,16 @@ public class TripleFactory {
         return result;
     }
 
-    private boolean hasTeens() {
-        boolean result = source.length() > 1 && isTeens(1, source.charAt(1));
-        return result;
-    }
-
-    private boolean isZeroSymbolAtZeroPosition(int i, char currentChar) {
-        return currentChar == '0' && i == 0;
-    }
-
+    @Override
     public String getSource()            { return source; }
 
+    @Override
     public void setSource(String source) { this.source = new StringBuilder(source).reverse().toString(); }
 
+    @Override
+    public DigitsRepository getDigitsRepository() { return digitsRepository; }
+
+    @Override
     public void setDigitsRepository(DigitsRepository digitsRepository) {
         this.digitsRepository = digitsRepository;
     }
@@ -101,6 +102,15 @@ public class TripleFactory {
         result &= sourceLength > 1;
         result &= pos == 1;
         return result;
+    }
+
+    private boolean hasTeens() {
+        boolean result = source.length() > 1 && isTeens(1, source.charAt(1));
+        return result;
+    }
+
+    private boolean isZeroSymbolAtZeroPosition(int i, char currentChar) {
+        return currentChar == '0' && i == 0;
     }
 
 }
