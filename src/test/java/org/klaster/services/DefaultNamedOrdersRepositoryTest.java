@@ -24,7 +24,7 @@ public class DefaultNamedOrdersRepositoryTest {
 
     @BeforeAll
     static void init() {
-        namedOrdersRepository = new DefaultNamedOrdersRepositoryFactory().loadRepository();
+        namedOrdersRepository = new DefaultNamedOrdersRepositoryFactory().create();
     }
 
     static Stream<Arguments> namedOrders() {

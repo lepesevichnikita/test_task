@@ -7,8 +7,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.klaster.builders.DefaultTripleSequenceAsStringRepresenterBuilder;
 import org.klaster.builders.DefaultTripleSequenceFactoryBuilder;
-import org.klaster.interfaces.TripleSequenceAsStringRepresenter;
 import org.klaster.interfaces.TripleSequenceFactory;
+import org.klaster.interfaces.TripleSequenceAsStringRepresenter;
 import org.klaster.models.TripleSequence;
 
 import java.util.stream.Stream;
@@ -83,7 +83,7 @@ public class DefaultTripleSequenceAsStringRepresenterTest {
     @MethodSource("tripleSequences")
     void wordsRepresentationOfTripleSequence(String numberAsStringOfDigits, String expectedWordsRepresentation) {
         tripleSequenceFactory.setSource(numberAsStringOfDigits);
-        TripleSequence tripleSequence = tripleSequenceFactory.loadRepository();
+        TripleSequence tripleSequence = tripleSequenceFactory.create();
         assertEquals(expectedWordsRepresentation,
                      tripleSequenceAsStringRepresenter.from(tripleSequence));
     }

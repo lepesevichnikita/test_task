@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.klaster.builders.DefaultDigitAsStringRepresenterBuilder;
 import org.klaster.builders.DefaultDigitBuilder;
 import org.klaster.interfaces.DigitAsStringRepresenter;
 import org.klaster.models.Declension;
@@ -31,7 +32,7 @@ public class DefaultDigitAsStringRepresenterTest {
 
     @BeforeAll
     static void init() {
-        digitAsStringRepresenter = new DefaultDigitAsStringRepresenter();
+        digitAsStringRepresenter = new DefaultDigitAsStringRepresenterBuilder().getResult();
     }
 
     private static Stream<Arguments> digitsUnderTwo() {

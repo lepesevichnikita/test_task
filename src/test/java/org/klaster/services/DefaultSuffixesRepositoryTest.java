@@ -53,7 +53,7 @@ public class DefaultSuffixesRepositoryTest {
 
     @BeforeAll
     static void init() {
-        suffixesRepository = new DefaultSuffixesRepositoryFactory().loadRepository();
+        suffixesRepository = new DefaultSuffixesRepositoryFactory().create();
     }
 
     @ParameterizedTest
