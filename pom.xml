@@ -20,7 +20,7 @@
     <mockito.core.version>2.21.0</mockito.core.version>
     <mockito.junit.jupiter.version>2.23.0</mockito.junit.jupiter.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <snakeyaml.version>1.25</snakeyaml.version>
+    <snakeyaml.version>1.31</snakeyaml.version>
   </properties>
 
   <dependencies>
